@@ -1,34 +1,54 @@
-import 'package:auto_route/auto_route.dart';
-import 'package:salo/src/professionals/professionals_router.gr.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:go_router/go_router.dart';
+import 'package:salo/src/auth/phone_validation_screen.dart';
 
-final professionalsRouter = AppRouter();
+import '../auth/auth_screen.dart';
+import 'onboarding/onboarding_screen.dart';
 
-@AutoRouterConfig(
-  replaceInRouteName: 'Page|Screen|Dialog|Modal|View,Route',
-)
-class AppRouter extends RootStackRouter {
-  @override
-  RouteType get defaultRouteType {
-    return const RouteType.custom(
-      transitionsBuilder: TransitionsBuilders.noTransition,
-      durationInMilliseconds: 0,
-      reverseDurationInMilliseconds: 0,
-    );
-  }
-
-  @override
-  List<AutoRoute> get routes => [
-        AutoRoute(
-          path: '/',
-          page: SplashRoute.page,
-          guards: [],
-          children: [
-            AutoRoute(
-              path: 'onboarding',
-              page: OnboardingRoute.page,
-              initial: true,
-            ),
-          ],
+/// The route configuration.
+final GoRouter professionalsRouter = GoRouter(
+  routes: <RouteBase>[
+    GoRoute(
+      path: '/',
+      redirect: (context, state) {
+        // On first launch, redirect, then go to whatever the requested route is.
+        if (state.uri.path == '/') {
+          final currentUser = FirebaseAuth.instance.currentUser;
+          final isAuthenticated = currentUser != null;
+          return isAuthenticated ? '/home' : '/onboarding';
+        }
+        return null;
+      },
+      routes: [
+        GoRoute(
+          path: 'home',
+          builder: (BuildContext context, GoRouterState state) {
+            return const AuthScreen();
+          },
         ),
-      ];
-}
+        GoRoute(
+          path: 'onboarding',
+          builder: (BuildContext context, GoRouterState state) {
+            return const OnboardingScreen();
+          },
+        ),
+        GoRoute(
+            path: 'auth',
+            builder: (BuildContext context, GoRouterState state) {
+              return const AuthScreen();
+            },
+            routes: [
+              GoRoute(
+                path: 'verify',
+                builder: (BuildContext context, GoRouterState state) {
+                  return PhoneValidationScreen(
+                    phoneNumber: state.extra as String,
+                  );
+                },
+              ),
+            ]),
+      ],
+    ),
+  ],
+);

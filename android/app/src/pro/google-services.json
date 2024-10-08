@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "577641455644",
+    "project_id": "salo-50057",
+    "storage_bucket": "salo-50057.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577641455644:android:b7a1a192926bdaf6b7ffd9",
+        "android_client_info": {
+          "package_name": "com.pedromassango.salo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWFSVMbNW4YnNRzSn-Vmyt_hqOvV3nsCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:577641455644:android:f8517e698d65d163b7ffd9",
+        "android_client_info": {
+          "package_name": "com.pedromassango.salo.pro"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWFSVMbNW4YnNRzSn-Vmyt_hqOvV3nsCk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

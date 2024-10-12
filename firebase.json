@@ -1,1 +1,75 @@
-{"flutter":{"platforms":{"android":{"default":{"projectId":"salo-50057","appId":"1:577641455644:android:b7a1a192926bdaf6b7ffd9","fileOutput":"android/app/google-services.json"}},"ios":{"default":{"projectId":"salo-50057","appId":"1:577641455644:ios:1951f728f324cde5b7ffd9","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"salo-50057","configurations":{"android":"1:577641455644:android:b7a1a192926bdaf6b7ffd9","ios":"1:577641455644:ios:1951f728f324cde5b7ffd9"}}}}}}
+{
+  "flutter": {
+    "platforms": {
+      "android": {
+        "default": {
+          "projectId": "salo-50057",
+          "appId": "1:577641455644:android:b7a1a192926bdaf6b7ffd9",
+          "fileOutput": "android/app/google-services.json"
+        },
+        "buildConfigurations": {
+          "src": {
+            "projectId": "salo-50057",
+            "appId": "1:577641455644:android:b7a1a192926bdaf6b7ffd9",
+            "fileOutput": "android/app/src/google-services.json"
+          },
+          "src/pro": {
+            "projectId": "salo-50057",
+            "appId": "1:577641455644:android:f8517e698d65d163b7ffd9",
+            "fileOutput": "android/app/src/pro/google-services.json"
+          }
+        }
+      },
+      "ios": {
+        "default": {
+          "projectId": "salo-50057",
+          "appId": "1:577641455644:ios:1951f728f324cde5b7ffd9",
+          "uploadDebugSymbols": false,
+          "fileOutput": "ios/Runner/GoogleService-Info.plist"
+        },
+        "buildConfigurations": {
+          "Debug-salo": {
+            "projectId": "salo-50057",
+            "appId": "1:577641455644:ios:1951f728f324cde5b7ffd9",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/flavors/salo/GoogleService-Info.plist"
+          },
+          "Debug-pro": {
+            "projectId": "salo-50057",
+            "appId": "1:577641455644:ios:3f87d223a97c0edeb7ffd9",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/flavors/pro/GoogleService-Info.plist"
+          },
+          "Release-salo": {
+            "projectId": "salo-50057",
+            "appId": "1:577641455644:ios:1951f728f324cde5b7ffd9",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/flavors/salo/GoogleService-Info.plist"
+          },
+          "Release-pro": {
+            "projectId": "salo-50057",
+            "appId": "1:577641455644:ios:3f87d223a97c0edeb7ffd9",
+            "uploadDebugSymbols": false,
+            "fileOutput": "ios/flavors/pro/GoogleService-Info.plist"
+          }
+        }
+      },
+      "dart": {
+        "lib/firebase_options.dart": {
+          "projectId": "salo-50057",
+          "configurations": {
+            "android": "1:577641455644:android:b7a1a192926bdaf6b7ffd9",
+            "ios": "1:577641455644:ios:1951f728f324cde5b7ffd9"
+          }
+        },
+        "lib/firebase_options_pro.dart": {
+          "projectId": "salo-50057",
+          "configurations": {
+            "android": "1:577641455644:android:f8517e698d65d163b7ffd9",
+            "ios": "1:577641455644:ios:3f87d223a97c0edeb7ffd9"
+          }
+        }
+      }
+    }
+  }
+}

@@ -17,16 +17,20 @@ class SaloApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('IsPro: $isProVersion\n');
+    debugPrint('IsPro: $isProVersion\n');
     return MaterialApp.router(
-      title: title ?? 'Salo',
+      title: title ?? 'Beto',
       routerConfig: router,
       theme: ThemeData(
         useMaterial3: true,
         fontFamily: GoogleFonts.roboto().fontFamily,
         textTheme: TextTheme(
-          displayLarge: GoogleFonts.baloo2(),
-          headlineLarge: GoogleFonts.baloo2(),
+          displayLarge: GoogleFonts.baloo2(
+            fontWeight: FontWeight.w900,
+          ),
+          headlineLarge: GoogleFonts.baloo2(
+            fontWeight: FontWeight.w900,
+          ),
           titleSmall: GoogleFonts.roboto(),
           titleMedium: GoogleFonts.roboto(),
           titleLarge: GoogleFonts.roboto(

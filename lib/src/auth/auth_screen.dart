@@ -27,7 +27,6 @@ class _AuthScreenState extends State<AuthScreen> {
 
   @override
   Widget build(BuildContext context) {
-    Navigator.of(context);
     return Scaffold(
       resizeToAvoidBottomInset: true,
       // For the back button

@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:salo/src/shared/app_picker.dart';
 
+import '../get_categories_usecase.dart';
 import '../shared/resources.dart';
-
-enum _FormStep { name, address, categories }
 
 class SignupFormScreen extends StatefulWidget {
   const SignupFormScreen({super.key});
@@ -15,9 +14,6 @@ class SignupFormScreen extends StatefulWidget {
 
 class _SignupFormScreenState extends State<SignupFormScreen> {
   final _pageController = PageController();
-  String _firstAndLastName = '';
-  String _location = '';
-  final List<String> _categories = [];
 
   void _onNext() {
     _nextPage();
@@ -37,9 +33,9 @@ class _SignupFormScreenState extends State<SignupFormScreen> {
       // For the back button
       body: SafeArea(
         minimum: const EdgeInsets.only(
-          top: kToolbarHeight * 2,
-          left: 32,
-          right: 32,
+          top: kToolbarHeight * 1.5,
+          left: 16,
+          right: 16,
           bottom: 16,
         ),
         child: PageView(
@@ -47,11 +43,12 @@ class _SignupFormScreenState extends State<SignupFormScreen> {
           children: [
             _PersonalDetailsForm(
               onNext: _onNext,
-              onChanged: (v) => _firstAndLastName = v,
             ),
             _LocationForm(
               onNext: _onNext,
-              onChanged: (v) => _location = v,
+            ),
+            _CategoriesForm(
+              onNext: _onNext,
             ),
           ],
         ),
@@ -64,10 +61,8 @@ class _PersonalDetailsForm extends StatefulWidget {
   const _PersonalDetailsForm({
     super.key,
     required this.onNext,
-    required this.onChanged,
   });
 
-  final ValueChanged<String> onChanged;
   final VoidCallback onNext;
 
   @override
@@ -75,14 +70,14 @@ class _PersonalDetailsForm extends StatefulWidget {
 }
 
 class _PersonalDetailsFormState extends State<_PersonalDetailsForm> {
-  bool _isValid = false;
+  bool get _isValid =>
+      _firstName.trim().isNotEmpty &&
+      _lastName.trim().isNotEmpty &&
+      _gender.trim().isNotEmpty;
+
   String _gender = '';
-  void _validateInput(String value) {
-    setState(() => _isValid = value.trim().isNotEmpty);
-    if (_isValid) {
-      widget.onChanged(value);
-    }
-  }
+  String _firstName = '';
+  String _lastName = '';
 
   @override
   Widget build(BuildContext context) {
@@ -113,16 +108,20 @@ class _PersonalDetailsFormState extends State<_PersonalDetailsForm> {
                 ),
                 AppInputField(
                   label: 'Primeiro nome',
-                  onChanged: (v) {},
+                  keyboardType: TextInputType.name,
+                  autofillHints: AutofillHints.givenName,
+                  onChanged: (v) => setState(() => _firstName = v),
                 ),
                 const SizedBox(height: 24),
                 AppInputField(
                   label: 'Último nome',
-                  onChanged: (v) {},
+                  autofillHints: AutofillHints.familyName,
+                  keyboardType: TextInputType.name,
+                  onChanged: (v) => setState(() => _lastName = v),
                 ),
                 const SizedBox(height: 32),
                 AppPicker(
-                  values: {'Masculino', 'Feminino'},
+                  values: const {'Masculino', 'Feminino'},
                   onChanged: (value) {
                     setState(() => _gender = value);
                   },
@@ -130,7 +129,7 @@ class _PersonalDetailsFormState extends State<_PersonalDetailsForm> {
                     label: 'Género',
                     value: _gender,
                     key: ValueKey(_gender),
-                    trailing: Icon(
+                    trailing: const Icon(
                       Icons.keyboard_arrow_down_rounded,
                       color: Colors.black26,
                     ),
@@ -153,12 +152,9 @@ class _PersonalDetailsFormState extends State<_PersonalDetailsForm> {
 
 class _LocationForm extends StatefulWidget {
   const _LocationForm({
-    super.key,
     required this.onNext,
-    required this.onChanged,
   });
 
-  final ValueChanged<String> onChanged;
   final VoidCallback onNext;
 
   @override
@@ -166,14 +162,10 @@ class _LocationForm extends StatefulWidget {
 }
 
 class _LocationFormState extends State<_LocationForm> {
-  bool _isValid = false;
+  bool get _isValid => _province.trim().isNotEmpty && _city.trim().isNotEmpty;
 
-  void _validateInput(String value) {
-    setState(() => _isValid = value.trim().isNotEmpty);
-    if (_isValid) {
-      widget.onChanged(value);
-    }
-  }
+  String _province = '';
+  String _city = '';
 
   @override
   Widget build(BuildContext context) {
@@ -196,7 +188,7 @@ class _LocationFormState extends State<_LocationForm> {
                 Padding(
                   padding: const EdgeInsets.only(top: 8, bottom: 54),
                   child: Text(
-                    'Apenas a cidade será visível para seus clientes.',
+                    '',
                     style: GoogleFonts.roboto().copyWith(
                       color: Colors.black54,
                     ),
@@ -205,13 +197,17 @@ class _LocationFormState extends State<_LocationForm> {
                 AppInputField(
                   label: 'Província',
                   hint: 'Luanda',
-                  onChanged: (v) {},
+                  autofillHints: AutofillHints.addressCity,
+                  keyboardType: TextInputType.streetAddress,
+                  onChanged: (v) => setState(() => _province = v),
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 24),
                 AppInputField(
                   label: 'Cidade',
                   hint: 'Estalagem',
-                  onChanged: (v) {},
+                  autofillHints: AutofillHints.addressState,
+                  keyboardType: TextInputType.streetAddress,
+                  onChanged: (v) => setState(() => _city = v),
                 ),
               ],
             ),
@@ -220,6 +216,161 @@ class _LocationFormState extends State<_LocationForm> {
         SaloButton.primary(
           title: 'Próximo',
           onPressed: _isValid ? widget.onNext : null,
+        ),
+      ],
+    );
+  }
+}
+
+class _CategoriesForm extends StatefulWidget {
+  const _CategoriesForm({
+    required this.onNext,
+  });
+
+  final VoidCallback onNext;
+
+  @override
+  State<_CategoriesForm> createState() => _CategoriesFormState();
+}
+
+class _CategoriesFormState extends State<_CategoriesForm> {
+  bool get _isValid => _subcategories.isNotEmpty;
+
+  Category? _selected;
+  final List<Category> _categories = [];
+  final List<Category> _subcategories = [];
+
+  void _preloadCategories() async {
+    GetCategoriesUsecase().call().then((categories) {
+      _categories.addAll(categories);
+      setState(() {});
+    });
+  }
+
+  void _onItemSelected(Category item) {
+    final checked = _subcategories.contains(item);
+
+    if (checked) {
+      _subcategories.remove(item);
+    } else {
+      _subcategories.add(item);
+    }
+    setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _preloadCategories();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          color: Colors.white,
+          child: Column(
+            children: [
+              Text(
+                'Escolha a categoria dos serviços que você realiza'
+                    .toUpperCase(),
+                style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                      fontSize: 32,
+                      fontWeight: FontWeight.w900,
+                      color: primaryColor,
+                    ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 8, bottom: 36),
+                child: Text(
+                  'Após o cadastro você poderá alterar os serviços escolhidos',
+                  style: GoogleFonts.roboto().copyWith(
+                    color: Colors.black54,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
+        Expanded(
+          child: _selected == null
+              ? ListView.builder(
+                  shrinkWrap: true,
+                  clipBehavior: Clip.hardEdge,
+                  itemCount: _categories.length,
+                  itemBuilder: (context, index) {
+                    final item = _categories[index];
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: ListTile(
+                        onTap: () => setState(() => _selected = item),
+                        contentPadding: const EdgeInsets.all(16),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            side: BorderSide(
+                              color: Colors.black26,
+                            )),
+                        title: Text(
+                          item.title,
+                          style: context.textTheme.titleLarge,
+                        ),
+                        subtitle: Text(
+                          item.message ?? '',
+                          style: context.textTheme.titleMedium!.copyWith(
+                            color: Colors.black.withOpacity(.6),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                )
+              : ListView.builder(
+                  shrinkWrap: true,
+                  clipBehavior: Clip.hardEdge,
+                  itemCount: _selected?.subcategories.length ?? 0,
+                  itemBuilder: (context, index) {
+                    final item = _selected!.subcategories.elementAt(index);
+                    final checked = _subcategories.contains(item);
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: ListTile(
+                        onTap: () => _onItemSelected(item),
+                        contentPadding: const EdgeInsets.all(16),
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            side: const BorderSide(color: Colors.black26)),
+                        title: Text(
+                          item.title,
+                          style: context.textTheme.titleLarge,
+                        ),
+                        trailing: Checkbox(
+                          value: checked,
+                          side: const BorderSide(width: 1),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(4),
+                          ),
+                          onChanged: (v) => _onItemSelected(item),
+                        ),
+                        subtitle: Text(
+                          item.message ?? '',
+                          style: context.textTheme.titleMedium!.copyWith(
+                            color: Colors.black.withOpacity(.6),
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                ),
+        ),
+        Container(
+          color: Colors.white,
+          child: SaloButton.primary(
+            title: 'Próximo',
+            onPressed: _isValid ? widget.onNext : null,
+          ),
         ),
       ],
     );

@@ -27,7 +27,7 @@ class OnboardingScreen extends StatelessWidget {
                 children: [
                   Center(
                     child: Text(
-                      'Salo',
+                      appName,
                       style: Theme.of(context).textTheme.displayLarge!.copyWith(
                             fontSize: 100,
                             fontWeight: FontWeight.w900,

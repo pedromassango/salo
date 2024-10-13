@@ -4,6 +4,7 @@ import 'package:salo/app.dart';
 import 'package:salo/src/professionals/professionals_router.dart';
 
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:salo/src/shared/resources.dart';
 
 import 'firebase_options_pro.dart';
 
@@ -17,7 +18,7 @@ void main() async {
 
   runApp(
     SaloApp(
-      title: 'Salo Pro',
+      title: '$appName Pro',
       router: professionalsRouter,
     ),
   );

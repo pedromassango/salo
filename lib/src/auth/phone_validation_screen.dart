@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
@@ -17,7 +18,13 @@ class _PhoneValidationScreenState extends State<PhoneValidationScreen> {
   final _inputFocusNode = FocusNode();
   final _maxPinLength = 6;
 
-  void _onPinSubmitted(String pin) {}
+  void _onPinSubmitted(BuildContext context, String pin) {
+    _onPhoneValidated(context);
+  }
+
+  void _onPhoneValidated(BuildContext context) {
+    context.push('/auth/signup');
+  }
 
   @override
   void initState() {
@@ -68,8 +75,10 @@ class _PhoneValidationScreenState extends State<PhoneValidationScreen> {
                       ),
                     ),
                     const SizedBox(height: 32),
-                    SizedBox(
-                      width: 300,
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 32,
+                      ),
                       child: PinCodeTextField(
                         autoUnfocus: true,
                         cursorColor: primaryColor,
@@ -88,7 +97,7 @@ class _PhoneValidationScreenState extends State<PhoneValidationScreen> {
                         enablePinAutofill: true,
                         autoFocus: true,
                         length: _maxPinLength,
-                        onCompleted: _onPinSubmitted,
+                        onCompleted: (code) => _onPinSubmitted(context, code),
                       ),
                     ),
                     Padding(
@@ -104,13 +113,10 @@ class _PhoneValidationScreenState extends State<PhoneValidationScreen> {
                 ),
               ),
             ),
-            TextButton(
-              child: Text(
-                'Enviar o código novamente',
-                style: context.textTheme.titleLarge!
-                    .copyWith(fontSize: 20, color: Colors.blue),
-              ),
-              onPressed: () {},
+            SaloButton.text(
+              title: 'Enviar o código novamente',
+              style: context.textTheme.titleLarge!.copyWith(fontSize: 16),
+              onPressed: () => _onPhoneValidated(context),
             ),
           ],
         ),

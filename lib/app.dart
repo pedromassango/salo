@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/services.dart';
+import 'package:salo/src/shared/resources.dart';
 
 const bool isProVersion = appFlavor == 'pro';
 
@@ -19,15 +20,17 @@ class SaloApp extends StatelessWidget {
   Widget build(BuildContext context) {
     debugPrint('IsPro: $isProVersion\n');
     return MaterialApp.router(
-      title: title ?? 'Beto',
+      title: title ?? appName,
       routerConfig: router,
       theme: ThemeData(
         useMaterial3: true,
         fontFamily: GoogleFonts.roboto().fontFamily,
+        scaffoldBackgroundColor: Colors.white,
         textTheme: TextTheme(
           displayLarge: GoogleFonts.baloo2(
             fontWeight: FontWeight.w900,
           ),
+          displayMedium: GoogleFonts.baloo2(),
           headlineLarge: GoogleFonts.baloo2(
             fontWeight: FontWeight.w900,
           ),

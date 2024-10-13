@@ -1,0 +1,129 @@
+[
+  {
+    "title": "Moda e Beleza",
+    "image": "https://cdn-icons-png.flaticon.com/512/4431/4431056.png",
+    "message": "Maquiadoras, Manicure e pedicure, Design de sobrancelhas, Cabeleireiros, Barbeiros, Designer de pestanas, Micropigmentador, Podólogo, Bronzeamento, Depilação",
+    "subcategories": [
+      {
+        "title": "Cabelo",
+        "message": "Cabeleireiros e barbeiros"
+      },
+      {
+        "title": "Beleza",
+        "message": "Maquiadoras, Design de sobrancelhas, Esteticista, Manicure e pedicure, Designer de cílios, Micropigmentador, Podólogo, Bronzeamento, Depilação"
+      },
+      {
+        "title": "Estilo",
+        "message": "Corte e costura, Sapateiro, Alfaiate, Personal stylist"
+      }
+    ]
+  },
+  {
+    "title": "Reparos",
+    "image": "https://cdn-icons-png.flaticon.com/512/4431/4431056.png",
+    "message": "Eletricista, Montador de móveis, Pintor, Canalizador, Climatização, Arquiteto, Portão automático, etc.",
+    "subcategories": [
+      {
+        "title": "Instalações",
+        "message": "AC e Climatização, Instalador TV digital, Instalação de eletrônicos, Segurança eletrônica, Escada corrimão e guarda corpo, Portão automático, Câmeras e segurança, Sonorização de ambientes,  Sombras e coberturas"
+      },
+      {
+        "title": "Reformas e Reparos",
+        "message": "Eletricista, Pintor, Serralheria e solda, Vidraceiro, Gás, Pavimentação, Galvanização, Isolamento térmico e acústico, Restauração e polimento de pisos"
+      },
+      {
+        "title": "Serviços Gerais",
+        "message": "Chaveiro, Desentupidor, Desinfecção, Impermeabilizador, Marceneiro, Marido de aluguel, Tapeceiro, Reciclagem, Afiação"
+      },
+      {
+        "title": "Para Casa",
+        "message": "Decorador, Jardinagem, Limpeza de Vidros, Montador de móveis, Paisagista, Piscina, Coifas e exaustores, Instalação de papel de parede, Banheira, Lareira, Sauna"
+      },
+      {
+        "title": "Construção",
+        "message": "Arquiteto, Engenheiro, Limpeza Pós Obra, Pedreiro, Terraplanagem, Topografia, Marmoraria e granito, Poço artesiano, Empreiteiro, Casas e chalés de madeira, Concretagem, Design de interiores, Escavação, Fossa, Lazer e recreação, Remoção de entulho, Agrimensura"
+      }
+    ]
+  },
+  {
+    "title": "Serviços Domésticos",
+    "image": "https://cdn-icons-png.flaticon.com/512/4431/4431056.png",
+    "message": "Diarista, Babá, Motorista, Cozinheira, Passadeira, Lavadeira, Governanta, Pets, Personal organizer, etc.",
+    "subcategories": [
+      {
+        "title": "Babá",
+        "message": "Babá"
+      },
+      {
+        "title": "Serviços Domésticos",
+        "message": "Cozinheira, Passadeira, Lavadeira, Governanta"
+      },
+      {
+        "title": "Transporte",
+        "message": "Motorista, Entregador"
+      },
+      {
+        "title": "Pets",
+        "message": "Adestrador de cães, Passeador de cães, Serviços para pets"
+      },
+      {
+        "title": "Limpeza de Piscina",
+        "message": "ALimpeza de Piscina"
+      },
+      {
+        "title": "Cortinas e Tapetes",
+        "message": "Lavagem de Cortinas, Persianas e Tapetes, Limpeza de Carpetes"
+      }
+    ]
+  },
+  {
+    "title": "Aulas",
+    "image": "https://cdn-icons-png.flaticon.com/512/4431/4431056.png",
+    "message": "Idiomas, Matemática, Inglês, Dança, Personal trainer, Esportes, etc.",
+    "subcategories": [
+      {
+        "title": "Idiomas",
+        "message": "Inglês, Português, Espanhol, etc."
+      },
+      {
+        "title": "Acadêmicos",
+        "message": "Concursos, Escolares e Reforço, Educação Especial, Ensino Superior, Tarefas, Preparatório"
+      },
+      {
+        "title": "Esportes",
+        "message": "Dança, Esportes, Luta, Judo, Jogos"
+      },
+      {
+        "title": "Tecnologia",
+        "message": "Desenvolvimento Web, Android Apps, iOS, Esportes Eletrônicos, Informática, Marketing Digital"
+      }
+    ]
+  },
+  {
+    "title": "Eventos",
+    "image": "https://cdn-icons-png.flaticon.com/512/4431/4431056.png",
+    "message": "Fotografia, Decoração, Gravação de Vídeos, Confeitaria, Churrasqueiro, Música e Animação",
+    "subcategories": [
+      {
+        "title": "Confeitaria",
+        "message": "Confeitaria, Chocolateiro"
+      },
+      {
+        "title": "Churrasqueiro",
+        "message": "Churrasqueiro"
+      },
+      {
+        "title": "Música e Animação",
+        "message": "Animação de festas, Bandas e cantores, Djs, Ônibus balada"
+      },
+      {
+        "title": "Fotografia e Vídeo",
+        "message": "Fotografia, Gravação de Vídeos"
+      },
+      {
+        "title": "Serviços Complementares",
+        "message": "Brindes e lembrancinhas, Decoração, Florista"
+      }
+    ]
+  }
+]

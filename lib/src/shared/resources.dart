@@ -114,6 +114,8 @@ class AppInputField extends StatefulWidget {
     this.trailing,
     required this.onChanged,
     this.label,
+    this.keyboardType,
+    this.autofillHints,
     this.readOnly = false,
   });
 
@@ -122,6 +124,8 @@ class AppInputField extends StatefulWidget {
   final bool readOnly;
   final String? label;
   final Widget? trailing;
+  final TextInputType? keyboardType;
+  final String? autofillHints;
   final ValueChanged<String> onChanged;
 
   @override
@@ -146,13 +150,15 @@ class _AppInputFieldState extends State<AppInputField> {
       readOnly: widget.readOnly,
       controller: _controller,
       canRequestFocus: !widget.readOnly,
-      keyboardType: TextInputType.phone,
-      autofillHints: const [AutofillHints.telephoneNumber],
+      keyboardType: widget.keyboardType,
+      autofillHints: [
+        if (widget.autofillHints != null) widget.autofillHints!,
+      ],
       onTapOutside: (_) {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       style: context.textTheme.titleMedium!.copyWith(
-        fontSize: 20,
+        fontSize: 18,
       ),
       onChanged: widget.onChanged,
       decoration: InputDecoration(
@@ -161,7 +167,7 @@ class _AppInputFieldState extends State<AppInputField> {
         suffixIcon: widget.trailing,
         hintStyle: context.textTheme.titleMedium!.copyWith(
           color: Colors.grey,
-          fontSize: 20,
+          fontSize: 18,
         ),
         labelStyle: context.textTheme.titleMedium!.copyWith(
           color: Colors.grey,

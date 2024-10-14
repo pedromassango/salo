@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import 'package:salo/src/auth/phone_validation_screen.dart';
 
 import '../auth/auth_screen.dart';
+import '../auth/signup_form_screen.dart';
 import 'onboarding/onboarding_screen.dart';
 
 /// The route configuration.
@@ -34,20 +35,27 @@ final GoRouter professionalsRouter = GoRouter(
           },
         ),
         GoRoute(
-            path: 'auth',
-            builder: (BuildContext context, GoRouterState state) {
-              return const AuthScreen();
-            },
-            routes: [
-              GoRoute(
-                path: 'verify',
-                builder: (BuildContext context, GoRouterState state) {
-                  return PhoneValidationScreen(
-                    phoneNumber: state.extra as String,
-                  );
-                },
-              ),
-            ]),
+          path: 'auth',
+          builder: (BuildContext context, GoRouterState state) {
+            return const AuthScreen();
+          },
+          routes: [
+            GoRoute(
+              path: 'verify',
+              builder: (BuildContext context, GoRouterState state) {
+                return PhoneValidationScreen(
+                  phoneNumber: state.extra as String,
+                );
+              },
+            ),
+            GoRoute(
+              path: 'signup',
+              builder: (BuildContext context, GoRouterState state) {
+                return const SignupFormScreen();
+              },
+            ),
+          ],
+        ),
       ],
     ),
   ],

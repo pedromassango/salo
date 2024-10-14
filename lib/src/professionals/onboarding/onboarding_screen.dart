@@ -14,7 +14,7 @@ class OnboardingScreen extends StatelessWidget {
       body: Stack(
         children: [
           Positioned.fill(
-            child: Assets.coverrrrrr.image(fit: BoxFit.cover),
+            child: Assets.onboardingCover.image(fit: BoxFit.cover),
           ),
           Positioned(
             bottom: 0,

@@ -13,6 +13,7 @@ class SignupFormScreen extends StatefulWidget {
 }
 
 class _SignupFormScreenState extends State<SignupFormScreen> {
+  final _formPagesCount = 3;
   final _pageController = PageController();
 
   void _onNext() {
@@ -30,25 +31,40 @@ class _SignupFormScreenState extends State<SignupFormScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: true,
-      // For the back button
       body: SafeArea(
-        minimum: const EdgeInsets.only(
-          top: kToolbarHeight * 1.5,
-          left: 16,
-          right: 16,
-          bottom: 16,
-        ),
-        child: PageView(
-          controller: _pageController,
+        child: Column(
           children: [
-            _PersonalDetailsForm(
-              onNext: _onNext,
+            AnimatedBuilder(
+              animation: _pageController,
+              builder: (context, child) {
+                final value = _pageController.hasClients
+                    ? ((_pageController.page ?? 1.0) / _formPagesCount)
+                    : .0;
+                return Padding(
+                  padding: const EdgeInsets.only(top: 16, bottom: 24),
+                  child: LinearProgressIndicator(
+                    backgroundColor: accentColor,
+                    color: primaryColor,
+                    value: value,
+                  ),
+                );
+              },
             ),
-            _LocationForm(
-              onNext: _onNext,
-            ),
-            _CategoriesForm(
-              onNext: _onNext,
+            Expanded(
+              child: PageView(
+                controller: _pageController,
+                children: [
+                  _PersonalDetailsForm(
+                    onNext: _onNext,
+                  ),
+                  _LocationForm(
+                    onNext: _onNext,
+                  ),
+                  _CategoriesForm(
+                    onNext: _onNext,
+                  ),
+                ],
+              ),
             ),
           ],
         ),
@@ -59,7 +75,6 @@ class _SignupFormScreenState extends State<SignupFormScreen> {
 
 class _PersonalDetailsForm extends StatefulWidget {
   const _PersonalDetailsForm({
-    super.key,
     required this.onNext,
   });
 
@@ -85,65 +100,71 @@ class _PersonalDetailsFormState extends State<_PersonalDetailsForm> {
       children: [
         Expanded(
           child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Forneça seus dados pessoais'.toUpperCase(),
-                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                        fontSize: 36,
-                        fontWeight: FontWeight.w900,
-                        color: primaryColor,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Forneça seus dados pessoais'.toUpperCase(),
+                    style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                          fontSize: 36,
+                          fontWeight: FontWeight.w900,
+                          color: primaryColor,
+                        ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8, bottom: 54),
+                    child: Text(
+                      'Digite seus dados conforme eles aparecem no seu bilhete de identidade.',
+                      style: GoogleFonts.roboto().copyWith(
+                        color: Colors.black54,
                       ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8, bottom: 54),
-                  child: Text(
-                    'Digite seus dados conforme eles aparecem no seu bilhete de identidade.',
-                    style: GoogleFonts.roboto().copyWith(
-                      color: Colors.black54,
                     ),
                   ),
-                ),
-                AppInputField(
-                  label: 'Primeiro nome',
-                  keyboardType: TextInputType.name,
-                  autofillHints: AutofillHints.givenName,
-                  onChanged: (v) => setState(() => _firstName = v),
-                ),
-                const SizedBox(height: 24),
-                AppInputField(
-                  label: 'Último nome',
-                  autofillHints: AutofillHints.familyName,
-                  keyboardType: TextInputType.name,
-                  onChanged: (v) => setState(() => _lastName = v),
-                ),
-                const SizedBox(height: 32),
-                AppPicker(
-                  values: const {'Masculino', 'Feminino'},
-                  onChanged: (value) {
-                    setState(() => _gender = value);
-                  },
-                  child: AppInputField(
-                    label: 'Género',
-                    value: _gender,
-                    key: ValueKey(_gender),
-                    trailing: const Icon(
-                      Icons.keyboard_arrow_down_rounded,
-                      color: Colors.black26,
-                    ),
-                    readOnly: true,
-                    onChanged: (v) {},
+                  AppInputField(
+                    label: 'Primeiro nome',
+                    keyboardType: TextInputType.name,
+                    autofillHints: AutofillHints.givenName,
+                    onChanged: (v) => setState(() => _firstName = v),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 24),
+                  AppInputField(
+                    label: 'Último nome',
+                    autofillHints: AutofillHints.familyName,
+                    keyboardType: TextInputType.name,
+                    onChanged: (v) => setState(() => _lastName = v),
+                  ),
+                  const SizedBox(height: 32),
+                  AppPicker(
+                    values: const {'Masculino', 'Feminino'},
+                    onChanged: (value) {
+                      setState(() => _gender = value);
+                    },
+                    child: AppInputField(
+                      label: 'Género',
+                      value: _gender,
+                      key: ValueKey(_gender),
+                      trailing: const Icon(
+                        Icons.keyboard_arrow_down_rounded,
+                        color: Colors.black26,
+                      ),
+                      readOnly: true,
+                      onChanged: (v) {},
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-        SaloButton.primary(
-          title: 'Próximo',
-          onPressed: _isValid ? widget.onNext : null,
+        Padding(
+          padding: const EdgeInsets.fromLTRB(16, 8, 16, 8),
+          child: SaloButton.primary(
+            title: 'Próximo',
+            onPressed: _isValid ? widget.onNext : null,
+          ),
         ),
       ],
     );
@@ -169,55 +190,58 @@ class _LocationFormState extends State<_LocationForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Expanded(
-          child: SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  'Qual é o seu endereço?'.toUpperCase(),
-                  style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                        fontSize: 36,
-                        fontWeight: FontWeight.w900,
-                        color: primaryColor,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    'Qual é o seu endereço?'.toUpperCase(),
+                    style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                          fontSize: 36,
+                          fontWeight: FontWeight.w900,
+                          color: primaryColor,
+                        ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8, bottom: 42),
+                    child: Text(
+                      '',
+                      style: GoogleFonts.roboto().copyWith(
+                        color: Colors.black54,
                       ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 8, bottom: 54),
-                  child: Text(
-                    '',
-                    style: GoogleFonts.roboto().copyWith(
-                      color: Colors.black54,
                     ),
                   ),
-                ),
-                AppInputField(
-                  label: 'Província',
-                  hint: 'Luanda',
-                  autofillHints: AutofillHints.addressCity,
-                  keyboardType: TextInputType.streetAddress,
-                  onChanged: (v) => setState(() => _province = v),
-                ),
-                const SizedBox(height: 24),
-                AppInputField(
-                  label: 'Cidade',
-                  hint: 'Estalagem',
-                  autofillHints: AutofillHints.addressState,
-                  keyboardType: TextInputType.streetAddress,
-                  onChanged: (v) => setState(() => _city = v),
-                ),
-              ],
+                  AppInputField(
+                    label: 'Província',
+                    hint: 'Luanda',
+                    autofillHints: AutofillHints.addressCity,
+                    keyboardType: TextInputType.streetAddress,
+                    onChanged: (v) => setState(() => _province = v),
+                  ),
+                  const SizedBox(height: 24),
+                  AppInputField(
+                    label: 'Cidade',
+                    hint: 'Estalagem',
+                    autofillHints: AutofillHints.addressState,
+                    keyboardType: TextInputType.streetAddress,
+                    onChanged: (v) => setState(() => _city = v),
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-        SaloButton.primary(
-          title: 'Próximo',
-          onPressed: _isValid ? widget.onNext : null,
-        ),
-      ],
+          SaloButton.primary(
+            title: 'Próximo',
+            onPressed: _isValid ? widget.onNext : null,
+          ),
+        ],
+      ),
     );
   }
 }
@@ -266,113 +290,131 @@ class _CategoriesFormState extends State<_CategoriesForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          color: Colors.white,
-          child: Column(
-            children: [
-              Text(
-                'Escolha a categoria dos serviços que você realiza'
-                    .toUpperCase(),
-                style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                      fontSize: 32,
-                      fontWeight: FontWeight.w900,
-                      color: primaryColor,
-                    ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 8, bottom: 36),
-                child: Text(
-                  'Após o cadastro você poderá alterar os serviços escolhidos',
-                  style: GoogleFonts.roboto().copyWith(
-                    color: Colors.black54,
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.only(right: 16),
+            child: Text(
+              'Escolha os serviços que você realiza'.toUpperCase(),
+              style: Theme.of(context).textTheme.headlineLarge!.copyWith(
+                    fontSize: 32,
+                    fontWeight: FontWeight.w900,
+                    color: primaryColor,
                   ),
-                ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.only(top: 8, bottom: 16),
+            child: Text(
+              'Após o cadastro você poderá alterar as categorias escolhidas',
+              style: GoogleFonts.roboto().copyWith(
+                color: Colors.black54,
               ),
-            ],
+            ),
           ),
-        ),
-        Expanded(
-          child: _selected == null
-              ? ListView.builder(
-                  shrinkWrap: true,
-                  clipBehavior: Clip.hardEdge,
-                  itemCount: _categories.length,
-                  itemBuilder: (context, index) {
-                    final item = _categories[index];
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
-                      child: ListTile(
-                        onTap: () => setState(() => _selected = item),
-                        contentPadding: const EdgeInsets.all(16),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            side: BorderSide(
-                              color: Colors.black26,
-                            )),
-                        title: Text(
-                          item.title,
-                          style: context.textTheme.titleLarge,
+          Expanded(
+            child: _selected == null
+                ? ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: _categories.length,
+                    itemBuilder: (context, index) {
+                      final item = _categories[index];
+                      return Container(
+                        margin: const EdgeInsets.only(bottom: 16),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: Colors.black26),
                         ),
-                        subtitle: Text(
-                          item.message ?? '',
-                          style: context.textTheme.titleMedium!.copyWith(
-                            color: Colors.black.withOpacity(.6),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                )
-              : ListView.builder(
-                  shrinkWrap: true,
-                  clipBehavior: Clip.hardEdge,
-                  itemCount: _selected?.subcategories.length ?? 0,
-                  itemBuilder: (context, index) {
-                    final item = _selected!.subcategories.elementAt(index);
-                    final checked = _subcategories.contains(item);
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
-                      child: ListTile(
-                        onTap: () => _onItemSelected(item),
-                        contentPadding: const EdgeInsets.all(16),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                            side: const BorderSide(color: Colors.black26)),
-                        title: Text(
-                          item.title,
-                          style: context.textTheme.titleLarge,
-                        ),
-                        trailing: Checkbox(
-                          value: checked,
-                          side: const BorderSide(width: 1),
+                        child: ListTile(
+                          onTap: () => setState(() => _selected = item),
+                          contentPadding:
+                              const EdgeInsets.fromLTRB(16, 8, 16, 12),
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(4),
+                            borderRadius: BorderRadius.circular(12),
                           ),
-                          onChanged: (v) => _onItemSelected(item),
-                        ),
-                        subtitle: Text(
-                          item.message ?? '',
-                          style: context.textTheme.titleMedium!.copyWith(
-                            color: Colors.black.withOpacity(.6),
+                          title: Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: Text(
+                              item.title,
+                              style: context.textTheme.titleLarge,
+                            ),
+                          ),
+                          subtitle: Text(
+                            item.message ?? '',
+                            style: context.textTheme.titleMedium!.copyWith(
+                              color: Colors.black.withOpacity(.6),
+                            ),
                           ),
                         ),
-                      ),
-                    );
-                  },
-                ),
-        ),
-        Container(
-          color: Colors.white,
-          child: SaloButton.primary(
-            title: 'Próximo',
-            onPressed: _isValid ? widget.onNext : null,
+                      );
+                    },
+                  )
+                : ListView.builder(
+                    shrinkWrap: true,
+                    clipBehavior: Clip.hardEdge,
+                    itemCount: _selected?.subcategories.length ?? 0,
+                    itemBuilder: (context, index) {
+                      final item = _selected!.subcategories.elementAt(index);
+                      final checked = _subcategories.contains(item);
+                      return Container(
+                        margin: const EdgeInsets.only(bottom: 16),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: Colors.black26),
+                        ),
+                        child: ListTile(
+                          onTap: () => _onItemSelected(item),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          contentPadding:
+                              const EdgeInsets.fromLTRB(16, 8, 16, 12),
+                          title: Padding(
+                            padding: const EdgeInsets.only(bottom: 8),
+                            child: Text(
+                              item.title,
+                              style: context.textTheme.titleLarge,
+                            ),
+                          ),
+                          trailing: Checkbox(
+                            value: checked,
+                            fillColor:
+                                WidgetStateProperty.resolveWith((states) {
+                              return states.contains(WidgetState.selected)
+                                  ? primaryColor
+                                  : null;
+                            }),
+                            checkColor: accentColor,
+                            side: const BorderSide(width: 1),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                            onChanged: (v) => _onItemSelected(item),
+                          ),
+                          subtitle: Text(
+                            item.message ?? '',
+                            style: context.textTheme.titleMedium!.copyWith(
+                              color: Colors.black.withOpacity(.6),
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                  ),
           ),
-        ),
-      ],
+          Padding(
+            padding: const EdgeInsets.only(top: 8),
+            child: SaloButton.primary(
+              title: 'Próximo',
+              onPressed: _isValid ? widget.onNext : null,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

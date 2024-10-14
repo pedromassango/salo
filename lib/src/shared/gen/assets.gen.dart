@@ -15,13 +15,16 @@ import 'package:vector_graphics/vector_graphics.dart' as _vg;
 class Assets {
   Assets._();
 
-  static const AssetGenImage iconV1 = AssetGenImage('assets/Icon v1.png');
   static const SvgGenImage salo = SvgGenImage('assets/Salo.svg');
-  static const AssetGenImage coverrrrrr =
-      AssetGenImage('assets/coverrrrrr.png');
+  static const String categories = 'assets/categories.json';
+  static const AssetGenImage icon = AssetGenImage('assets/icon.png');
+  static const AssetGenImage iconPro = AssetGenImage('assets/icon_pro.png');
+  static const AssetGenImage onboardingCover =
+      AssetGenImage('assets/onboarding_cover.png');
 
   /// List of all assets
-  static List<dynamic> get values => [iconV1, salo, coverrrrrr];
+  static List<dynamic> get values =>
+      [salo, categories, icon, iconPro, onboardingCover];
 }
 
 class AssetGenImage {

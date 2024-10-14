@@ -30,11 +30,13 @@ class _AuthScreenState extends State<AuthScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       // For the back button
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+      ),
       body: SafeArea(
         minimum: const EdgeInsets.only(
-          left: 32,
-          right: 32,
+          left: 16,
+          right: 16,
           bottom: 16,
         ),
         child: Column(
@@ -69,7 +71,7 @@ class _AuthScreenState extends State<AuthScreen> {
                             textAlign: TextAlign.center,
                             style: context.textTheme.titleMedium!.copyWith(
                               fontWeight: FontWeight.w900,
-                              fontSize: 20,
+                              fontSize: 18,
                             ),
                             decoration: const InputDecoration(
                               enabledBorder: UnderlineInputBorder(
@@ -97,7 +99,7 @@ class _AuthScreenState extends State<AuthScreen> {
                               },
                               style: context.textTheme.titleMedium!.copyWith(
                                 fontWeight: FontWeight.w900,
-                                fontSize: 20,
+                                fontSize: 18,
                               ),
                               onChanged: (v) =>
                                   setState(() => _phoneNumber = v),
@@ -105,8 +107,7 @@ class _AuthScreenState extends State<AuthScreen> {
                                 hintText: "Número de telefone",
                                 hintStyle:
                                     context.textTheme.titleMedium!.copyWith(
-                                  fontWeight: FontWeight.w900,
-                                  fontSize: 20,
+                                  fontSize: 18,
                                   color: Colors.grey,
                                 ),
                                 focusedBorder: const UnderlineInputBorder(

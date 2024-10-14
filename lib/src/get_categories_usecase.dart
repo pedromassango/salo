@@ -1,11 +1,11 @@
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:flutter/services.dart' show rootBundle;
 
 class GetCategoriesUsecase {
   Future<List<Category>> call() async {
-    final String jsonString = await rootBundle.loadString('assets/categories.json');
+    final String jsonString =
+        await rootBundle.loadString('assets/categories.json');
     List<Category> categories = parseCategoriesJson(jsonString);
     print('Data size: ${categories.length}');
 

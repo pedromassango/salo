@@ -48,12 +48,14 @@ class _PhoneValidationScreenState extends State<PhoneValidationScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: true,
       // For the back button
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+      ),
       body: SafeArea(
         minimum: const EdgeInsets.only(
-          left: 32,
-          right: 32,
-          bottom: 16,
+          left: 16,
+          right: 16,
+          bottom: 8,
         ),
         child: Column(
           children: [

@@ -20,6 +20,7 @@ class SaloButton extends StatelessWidget {
     this.textStyle,
     this.backgroundColor,
     this.height,
+    this.loading = false,
   });
 
   const SaloButton.primary({
@@ -29,6 +30,7 @@ class SaloButton extends StatelessWidget {
     this.backgroundColor,
     this.textStyle,
     this.height,
+    this.loading = false,
   }) : isPrimary = true;
 
   const SaloButton.text({
@@ -36,12 +38,14 @@ class SaloButton extends StatelessWidget {
     required this.onPressed,
     required this.title,
     this.height,
+    this.loading = false,
     TextStyle? style,
   })  : isPrimary = false,
         textStyle = style,
         backgroundColor = null;
 
   final bool isPrimary;
+  final bool loading;
   final String title;
   final double? height;
   final Color? backgroundColor;
@@ -55,7 +59,7 @@ class SaloButton extends StatelessWidget {
         ? primaryColor
         : (isPrimary ? accentColor : Colors.blue);
     return TextButton(
-      onPressed: onPressed,
+      onPressed: loading ? () => onPressed?.call() : onPressed,
       style: TextButton.styleFrom(
           overlayColor: Colors.transparent,
           shape: LinearBorder.none,
@@ -92,13 +96,21 @@ class SaloButton extends StatelessWidget {
               padding: const EdgeInsets.symmetric(
                 horizontal: 16,
               ),
-              child: Text(
-                title,
-                style: context.textTheme.titleLarge!.copyWith(
-                  fontWeight: FontWeight.bold,
-                  color: textColor.withOpacity(isDisabled ? .6 : 1),
-                ),
-              ),
+              child: loading
+                  ? Padding(
+                      padding: const EdgeInsets.all(12),
+                      child: AspectRatio(
+                        aspectRatio: 1,
+                        child: CircularProgressIndicator(color: textColor),
+                      ),
+                    )
+                  : Text(
+                      title,
+                      style: context.textTheme.titleLarge!.copyWith(
+                        fontWeight: FontWeight.bold,
+                        color: textColor.withOpacity(isDisabled ? .6 : 1),
+                      ),
+                    ),
             );
           }),
       child: const SizedBox.shrink(),

@@ -64,7 +64,7 @@ class OnboardingScreen extends StatelessWidget {
                       'OU, PROCURE UM PROFISSIONAL'.toUpperCase(),
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
                             decoration: TextDecoration.underline,
-                            color: Colors.white,
+                            color: Colors.white70,
                           ),
                     ),
                   ),

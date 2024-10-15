@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
-import 'package:salo/src/auth/phone_validation_screen.dart';
 
 import '../auth/auth_screen.dart';
 import '../auth/signup_form_screen.dart';
@@ -40,14 +39,6 @@ final GoRouter professionalsRouter = GoRouter(
             return const AuthScreen();
           },
           routes: [
-            GoRoute(
-              path: 'verify',
-              builder: (BuildContext context, GoRouterState state) {
-                return PhoneValidationScreen(
-                  phoneNumber: state.extra as String,
-                );
-              },
-            ),
             GoRoute(
               path: 'signup',
               builder: (BuildContext context, GoRouterState state) {

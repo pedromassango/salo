@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
+import 'package:salo/src/auth/domain/firebase_auth_extension.dart';
 
 import '../auth/auth_screen.dart';
 import '../auth/signup_form_screen.dart';
@@ -11,12 +12,18 @@ final GoRouter professionalsRouter = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: '/',
-      redirect: (context, state) {
+      redirect: (context, state) async {
         // On first launch, redirect, then go to whatever the requested route is.
         if (state.uri.path == '/') {
           final currentUser = FirebaseAuth.instance.currentUser;
-          final isAuthenticated = currentUser != null;
-          return isAuthenticated ? '/home' : '/onboarding';
+          final isLoggedIn = currentUser != null;
+          if (!isLoggedIn) {
+            return '/onboarding';
+          }
+
+          final isSignUpComplete = (await currentUser.isSignUpComplete);
+          debugPrint('isSignUpComplete: $isSignUpComplete');
+          return isSignUpComplete ? '/home' : '/signup';
         }
         return null;
       },
@@ -38,14 +45,12 @@ final GoRouter professionalsRouter = GoRouter(
           builder: (BuildContext context, GoRouterState state) {
             return const AuthScreen();
           },
-          routes: [
-            GoRoute(
-              path: 'signup',
-              builder: (BuildContext context, GoRouterState state) {
-                return const SignupFormScreen();
-              },
-            ),
-          ],
+        ),
+        GoRoute(
+          path: 'signup',
+          builder: (BuildContext context, GoRouterState state) {
+            return const SignupFormScreen();
+          },
         ),
       ],
     ),

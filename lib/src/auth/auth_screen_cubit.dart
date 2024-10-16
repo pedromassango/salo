@@ -17,13 +17,25 @@ class AuthScreenCubit extends Cubit<AuthScreenCubitState> {
 
   void onPhoneNumberChanged(String number) {
     emit(state.copyWith(
-        phoneNumber: number, authState: AuthVerificationState.none));
+      phoneNumber: number,
+      authState: AuthVerificationState.none,
+    ));
+  }
+
+  // clear any current error state as user types a new otp.
+  void onOtpChanged(String otp) {
+    emit(state.copyWith(
+      otpCode: otp,
+      isLoading: false,
+      isOtpCodeSent: false,
+      authState: AuthVerificationState.none,
+    ));
   }
 
   void onOtpSubmitted(String otp) {
     emit(state.copyWith(
       otpCode: otp,
-      isLoading: false,
+      isLoading: true,
       isOtpCodeSent: false,
       authState: AuthVerificationState.none,
     ));
@@ -42,8 +54,10 @@ class AuthScreenCubit extends Cubit<AuthScreenCubitState> {
       return;
     }
 
-    emit(
-        state.copyWith(isLoading: true, authState: AuthVerificationState.none));
+    emit(state.copyWith(
+      isLoading: true,
+      authState: AuthVerificationState.none,
+    ));
 
     sendOtpUsecase.requestOtpCode(
       phoneNumber: state.effectivePhoneNumber,

@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
+import 'package:salo/src/auth/domain/firebase_auth_extension.dart';
 
 enum AuthVerificationState {
   none,
@@ -20,9 +21,6 @@ class SendOtpUsecase {
     required ValueChanged<AuthVerificationState> onVerificationCompleted,
     required VoidCallback onError,
   }) async {
-    await Future.delayed(const Duration(seconds: 1));
-    onCodeSent.call();
-    return;
     await _firebaseAuth.verifyPhoneNumber(
       phoneNumber: phoneNumber,
       forceResendingToken: _forceResendingToken,
@@ -85,8 +83,15 @@ class SendOtpUsecase {
     if (isNewUser) {
       return AuthVerificationState.accountIncomplete;
     }
-    //_firebaseAuth.currentUser?.t
-    // TODO: verify if user's account is complete
-    return AuthVerificationState.loggedIn;
+    try {
+      final isSignUpComplete =
+          await _firebaseAuth.currentUser!.isSignUpComplete;
+      return (isSignUpComplete)
+          ? AuthVerificationState.loggedIn
+          : AuthVerificationState.accountIncomplete;
+    } catch (error) {
+      debugPrint(error.toString());
+      return AuthVerificationState.error;
+    }
   }
 }

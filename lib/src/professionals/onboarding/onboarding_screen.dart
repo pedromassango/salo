@@ -58,8 +58,10 @@ class OnboardingScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  TextButton(
-                    onPressed: () {},
+                  /*TextButton(
+                    onPressed: () {
+                      // TODO: launch consumer app
+                    },
                     child: Text(
                       'OU, PROCURE UM PROFISSIONAL'.toUpperCase(),
                       style: Theme.of(context).textTheme.bodyMedium!.copyWith(
@@ -67,7 +69,7 @@ class OnboardingScreen extends StatelessWidget {
                             color: Colors.white70,
                           ),
                     ),
-                  ),
+                  ),*/
                 ],
               ),
             ),

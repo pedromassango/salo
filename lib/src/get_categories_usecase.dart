@@ -7,8 +7,6 @@ class GetCategoriesUsecase {
     final String jsonString =
         await rootBundle.loadString('assets/categories.json');
     List<Category> categories = parseCategoriesJson(jsonString);
-    print('Data size: ${categories.length}');
-
     return categories;
   }
 }

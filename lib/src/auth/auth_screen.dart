@@ -230,7 +230,6 @@ class _OtpValidationFormState extends State<_OtpValidationForm> {
   @override
   void dispose() {
     _inputFocusNode.dispose();
-    FocusManager.instance.primaryFocus?.unfocus();
     super.dispose();
   }
 
@@ -250,12 +249,14 @@ class _OtpValidationFormState extends State<_OtpValidationForm> {
             break;
           case AuthVerificationState.error:
           case AuthVerificationState.errorInvalidOtp:
-          // TODO: Show error.
+            // TODO: Show error.
+            break;
           case AuthVerificationState.accountIncomplete:
-            context.push('auth/signup');
+            context.go('/signup');
             break;
           case AuthVerificationState.loggedIn:
-            context.push('/home');
+            context.go('/home');
+            break;
         }
       },
       child: Column(
@@ -300,6 +301,7 @@ class _OtpValidationFormState extends State<_OtpValidationForm> {
                       enablePinAutofill: true,
                       autoFocus: true,
                       length: _maxPinLength,
+                      onChanged: context.read<AuthScreenCubit>().onOtpChanged,
                       onCompleted:
                           context.read<AuthScreenCubit>().onOtpSubmitted,
                     ),
@@ -307,16 +309,27 @@ class _OtpValidationFormState extends State<_OtpValidationForm> {
                   Padding(
                     padding: const EdgeInsets.only(top: 16, bottom: 32),
                     child: BlocBuilder<AuthScreenCubit, AuthScreenCubitState>(
-                      buildWhen: (prev, next) =>
-                          prev.effectivePhoneNumber !=
-                          next.effectivePhoneNumber,
                       builder: (context, state) {
-                        return Text(
-                          "Um SMS foi enviado para ${state.effectivePhoneNumber}",
-                          style: GoogleFonts.roboto().copyWith(
-                            color: Colors.black54,
-                          ),
-                        );
+                        final errorMessage = state.authState ==
+                                AuthVerificationState.errorInvalidOtp
+                            ? "Este código não é válido!"
+                            : state.authState == AuthVerificationState.error
+                                ? 'Algo de errado aconteceu, tente novamente!'
+                                : null;
+
+                        return state.isLoading
+                            ? const Center(
+                                child: CircularProgressIndicator(),
+                              )
+                            : Text(
+                                errorMessage ??
+                                    "Um SMS foi enviado para ${state.effectivePhoneNumber}",
+                                style: GoogleFonts.roboto().copyWith(
+                                  color: errorMessage != null
+                                      ? Colors.red
+                                      : Colors.black54,
+                                ),
+                              );
                       },
                     ),
                   ),

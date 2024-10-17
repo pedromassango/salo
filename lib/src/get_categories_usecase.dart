@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:flutter/services.dart' show rootBundle;
+import 'package:uuid/uuid.dart';
 
 class GetCategoriesUsecase {
   Future<List<Category>> call() async {
@@ -11,13 +12,17 @@ class GetCategoriesUsecase {
   }
 }
 
+const uuid = Uuid();
+
 class Category {
+  final String id;
   final String title;
   final String? image;
   final String? message;
   final List<Category> subcategories;
 
   Category({
+    required this.id,
     required this.title,
     this.image,
     this.message,
@@ -25,12 +30,15 @@ class Category {
   });
 
   factory Category.fromJson(Map<String, dynamic> json) {
+    String uniqueId = uuid.v4();
+
     return Category(
+      id: uniqueId,
       title: json['title'],
       image: json['image'],
       message: json['message'],
       subcategories: (json['subcategories'] as List<dynamic>?)
-              ?.map((subcat) => Category.fromJson(subcat))
+              ?.map((e) => Category.fromJson(e))
               .toList() ??
           [],
     );

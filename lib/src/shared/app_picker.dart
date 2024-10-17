@@ -3,17 +3,19 @@ import 'package:flutter/services.dart';
 import 'package:salo/src/shared/resources.dart';
 import 'package:salo/src/shared/sheets.dart';
 
-class AppPicker extends StatelessWidget {
+class AppPicker<T> extends StatelessWidget {
   const AppPicker({
     super.key,
     required this.child,
     required this.values,
     required this.onChanged,
+    required this.valueTitleBuilder,
   });
 
   final Widget child;
-  final Set<String> values;
-  final ValueChanged<String> onChanged;
+  final List<T> values;
+  final ValueChanged<T> onChanged;
+  final String Function(T) valueTitleBuilder;
 
   void _showPicker(BuildContext context) {
     showAppBottomSheet(
@@ -38,7 +40,7 @@ class AppPicker extends StatelessWidget {
                   ...values.map((value) {
                     return ListItemAction(
                       color: primaryColor,
-                      title: value,
+                      title: valueTitleBuilder(value),
                       onPressed: () {
                         onChanged.call(value);
                         Navigator.pop(context);

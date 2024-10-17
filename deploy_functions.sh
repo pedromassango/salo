@@ -1,0 +1,1 @@
+cd functions/src && npm run build && firebase deploy --only functions

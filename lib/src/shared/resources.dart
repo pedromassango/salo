@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:salo/src/shared/gender.dart';
 
 const appName = 'Beto';
 const primaryColor = Color(0xff0A361D);
@@ -9,6 +10,13 @@ final dividerColor = buttonBackgroundColor;
 
 extension ContextExt on BuildContext {
   TextTheme get textTheme => Theme.of(this).textTheme;
+}
+
+extension GenderExt on Gender {
+  String get localize => switch (this) {
+        Gender.male => 'Masculino',
+        Gender.female => 'Feminino',
+      };
 }
 
 class SaloButton extends StatelessWidget {
@@ -124,21 +132,23 @@ class AppInputField extends StatefulWidget {
     this.hint,
     this.value,
     this.trailing,
-    required this.onChanged,
+    this.onChanged,
     this.label,
     this.keyboardType,
     this.autofillHints,
+    this.autofocus = false,
     this.readOnly = false,
   });
 
   final String? hint;
   final String? value;
   final bool readOnly;
+  final bool autofocus;
   final String? label;
   final Widget? trailing;
   final TextInputType? keyboardType;
   final String? autofillHints;
-  final ValueChanged<String> onChanged;
+  final ValueChanged<String>? onChanged;
 
   @override
   State<AppInputField> createState() => _AppInputFieldState();
@@ -155,10 +165,12 @@ class _AppInputFieldState extends State<AppInputField> {
     super.dispose();
   }
 
+  final _fontSize = 16.0;
+
   @override
   Widget build(BuildContext context) {
     return TextField(
-      autofocus: !widget.readOnly,
+      autofocus: widget.autofocus && !widget.readOnly,
       readOnly: widget.readOnly,
       controller: _controller,
       canRequestFocus: !widget.readOnly,
@@ -170,7 +182,7 @@ class _AppInputFieldState extends State<AppInputField> {
         FocusManager.instance.primaryFocus?.unfocus();
       },
       style: context.textTheme.titleMedium!.copyWith(
-        fontSize: 18,
+        fontSize: _fontSize,
       ),
       onChanged: widget.onChanged,
       decoration: InputDecoration(
@@ -179,11 +191,11 @@ class _AppInputFieldState extends State<AppInputField> {
         suffixIcon: widget.trailing,
         hintStyle: context.textTheme.titleMedium!.copyWith(
           color: Colors.grey,
-          fontSize: 18,
+          fontSize: _fontSize,
         ),
         labelStyle: context.textTheme.titleMedium!.copyWith(
           color: Colors.grey,
-          fontSize: 18,
+          fontSize: _fontSize,
         ),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(8),

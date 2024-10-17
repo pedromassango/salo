@@ -4,7 +4,8 @@ import 'package:go_router/go_router.dart';
 import 'package:salo/src/auth/domain/firebase_auth_extension.dart';
 
 import '../auth/auth_screen.dart';
-import '../auth/signup_form_screen.dart';
+import '../auth/signup_form/signup_form_screen.dart';
+import 'home/home_screen.dart';
 import 'onboarding/onboarding_screen.dart';
 
 /// The route configuration.
@@ -31,7 +32,7 @@ final GoRouter professionalsRouter = GoRouter(
         GoRoute(
           path: 'home',
           builder: (BuildContext context, GoRouterState state) {
-            return const AuthScreen();
+            return const HomeScreen();
           },
         ),
         GoRoute(

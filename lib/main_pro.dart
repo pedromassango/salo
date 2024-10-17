@@ -16,6 +16,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
 
+  //await FirebaseAuth.instance.signOut();
   await FirebaseMessaging.instance.setAutoInitEnabled(true);
 
   runApp(

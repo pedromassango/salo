@@ -210,28 +210,10 @@ class _PhoneInputForm extends StatelessWidget {
   }
 }
 
-class _OtpValidationForm extends StatefulWidget {
+class _OtpValidationForm extends StatelessWidget {
   const _OtpValidationForm();
 
-  @override
-  State<_OtpValidationForm> createState() => _OtpValidationFormState();
-}
-
-class _OtpValidationFormState extends State<_OtpValidationForm> {
-  final _inputFocusNode = FocusNode();
   final _maxPinLength = 6;
-
-  @override
-  void initState() {
-    super.initState();
-    FocusManager.instance.primaryFocus?.requestFocus(_inputFocusNode);
-  }
-
-  @override
-  void dispose() {
-    _inputFocusNode.dispose();
-    super.dispose();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -286,7 +268,6 @@ class _OtpValidationFormState extends State<_OtpValidationForm> {
                     child: PinCodeTextField(
                       autoUnfocus: true,
                       cursorColor: primaryColor,
-                      focusNode: _inputFocusNode,
                       showCursor: false,
                       pinTheme: const PinTheme.defaults(
                         activeColor: Colors.transparent,

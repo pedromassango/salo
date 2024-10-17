@@ -310,98 +310,102 @@ class _CategoriesFormState extends State<_CategoriesForm> {
             ),
           ),
           Expanded(
-            child: state.selectedMainCategory == null
-                ? ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: state.categories.length,
-                    itemBuilder: (context, index) {
-                      final item = state.categories[index];
-                      return Container(
-                        margin: const EdgeInsets.only(bottom: 16),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Colors.black26),
-                        ),
-                        child: ListTile(
-                          onTap: state.isCreatingAccount
-                              ? null
-                              : () => bloc.onMainCategoryChanged(item),
-                          contentPadding:
-                              const EdgeInsets.fromLTRB(16, 8, 16, 12),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          title: Padding(
-                            padding: const EdgeInsets.only(bottom: 8),
-                            child: Text(
-                              item.title,
-                              style: context.textTheme.titleLarge,
-                            ),
-                          ),
-                          subtitle: Text(
-                            item.message ?? '',
-                            style: context.textTheme.titleMedium!.copyWith(
-                              color: Colors.black.withOpacity(.6),
-                            ),
-                          ),
-                        ),
-                      );
-                    },
+            child: state.isLoadingCategories
+                ? const Center(
+                    child: CircularProgressIndicator(),
                   )
-                : ListView.builder(
-                    shrinkWrap: true,
-                    clipBehavior: Clip.hardEdge,
-                    itemCount: state.subcategories.length,
-                    itemBuilder: (context, index) {
-                      final item = state.subcategories.elementAt(index);
-                      final checked = state.isSubcategorySelected(item);
-                      return Container(
-                        margin: const EdgeInsets.only(bottom: 16),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Colors.black26),
-                        ),
-                        child: ListTile(
-                          onTap: () => bloc.onSubcategoriesChanged(item),
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          contentPadding:
-                              const EdgeInsets.fromLTRB(16, 8, 16, 12),
-                          title: Padding(
-                            padding: const EdgeInsets.only(bottom: 8),
-                            child: Text(
-                              item.title,
-                              style: context.textTheme.titleLarge,
+                : state.selectedMainCategory == null
+                    ? ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: state.categories.length,
+                        itemBuilder: (context, index) {
+                          final item = state.categories[index];
+                          return Container(
+                            margin: const EdgeInsets.only(bottom: 16),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: Colors.black26),
                             ),
-                          ),
-                          trailing: Checkbox(
-                            value: checked,
-                            fillColor:
-                                WidgetStateProperty.resolveWith((states) {
-                              return states.contains(WidgetState.selected)
-                                  ? primaryColor
-                                  : null;
-                            }),
-                            checkColor: accentColor,
-                            side: const BorderSide(width: 1),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(4),
+                            child: ListTile(
+                              onTap: state.isCreatingAccount
+                                  ? null
+                                  : () => bloc.onMainCategoryChanged(item),
+                              contentPadding:
+                                  const EdgeInsets.fromLTRB(16, 8, 16, 12),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              title: Padding(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: Text(
+                                  item.title,
+                                  style: context.textTheme.titleLarge,
+                                ),
+                              ),
+                              subtitle: Text(
+                                item.message ?? '',
+                                style: context.textTheme.titleMedium!.copyWith(
+                                  color: Colors.black.withOpacity(.6),
+                                ),
+                              ),
                             ),
-                            onChanged: state.isCreatingAccount
-                                ? null
-                                : (v) => bloc.onSubcategoriesChanged(item),
-                          ),
-                          subtitle: Text(
-                            item.message ?? '',
-                            style: context.textTheme.titleMedium!.copyWith(
-                              color: Colors.black.withOpacity(.6),
+                          );
+                        },
+                      )
+                    : ListView.builder(
+                        shrinkWrap: true,
+                        clipBehavior: Clip.hardEdge,
+                        itemCount: state.subcategories.length,
+                        itemBuilder: (context, index) {
+                          final item = state.subcategories.elementAt(index);
+                          final checked = state.isSubcategorySelected(item);
+                          return Container(
+                            margin: const EdgeInsets.only(bottom: 16),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              border: Border.all(color: Colors.black26),
                             ),
-                          ),
-                        ),
-                      );
-                    },
-                  ),
+                            child: ListTile(
+                              onTap: () => bloc.onSubcategoriesChanged(item),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(12),
+                              ),
+                              contentPadding:
+                                  const EdgeInsets.fromLTRB(16, 8, 16, 12),
+                              title: Padding(
+                                padding: const EdgeInsets.only(bottom: 8),
+                                child: Text(
+                                  item.title,
+                                  style: context.textTheme.titleLarge,
+                                ),
+                              ),
+                              trailing: Checkbox(
+                                value: checked,
+                                fillColor:
+                                    WidgetStateProperty.resolveWith((states) {
+                                  return states.contains(WidgetState.selected)
+                                      ? primaryColor
+                                      : null;
+                                }),
+                                checkColor: accentColor,
+                                side: const BorderSide(width: 1),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(4),
+                                ),
+                                onChanged: state.isCreatingAccount
+                                    ? null
+                                    : (v) => bloc.onSubcategoriesChanged(item),
+                              ),
+                              subtitle: Text(
+                                item.message ?? '',
+                                style: context.textTheme.titleMedium!.copyWith(
+                                  color: Colors.black.withOpacity(.6),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
           ),
           Padding(
             padding: const EdgeInsets.only(top: 8),

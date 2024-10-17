@@ -1,14 +1,19 @@
 import 'dart:convert';
 
-import 'package:flutter/services.dart' show rootBundle;
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:uuid/uuid.dart';
 
 class GetCategoriesUsecase {
   Future<List<Category>> call() async {
-    final String jsonString =
-        await rootBundle.loadString('assets/categories.json');
-    List<Category> categories = parseCategoriesJson(jsonString);
-    return categories;
+    //final jsonString = await rootBundle.loadString('assets/categories.json');
+    //List<Category> categories = parseCategoriesJson(jsonString);
+
+    return FirebaseFirestore.instance
+        .collection('categories')
+        .get()
+        .then((result) {
+      return result.docs.map((shot) => Category.fromJson(shot.data())).toList();
+    });
   }
 }
 
@@ -42,6 +47,18 @@ class Category {
               .toList() ??
           [],
     );
+  }
+
+  // Converts a Category object to a Map for Firestore
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'title': title,
+      'image': image,
+      'message': message,
+      'subcategories':
+          subcategories.map((subcategory) => subcategory.toMap()).toList(),
+    };
   }
 }
 

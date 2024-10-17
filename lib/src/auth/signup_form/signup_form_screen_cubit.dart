@@ -21,7 +21,7 @@ class SignupFormScreenCubit extends Cubit<SignupFormScreenCubitState> {
     emit(state.copyWith(
       isCreatingAccount: false,
       isAccountCreated: false,
-      isLoadingCategories: false,
+      isLoadingCategories: true,
       selectedMainCategory: null,
       categories: [],
     ));

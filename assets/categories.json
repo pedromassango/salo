@@ -6,11 +6,15 @@
     "subcategories": [
       {
         "title": "Cabelo",
-        "message": "Cabeleireiros e barbeiros"
+        "message": "Cabeleireiros e barbeiros, vendedora de perucas e cabelos brasileiros"
       },
       {
         "title": "Beleza",
         "message": "Maquiadoras, Design de sobrancelhas, Esteticista, Manicure e pedicure, Designer de cílios, Micropigmentador, Podólogo, Bronzeamento, Depilação"
+      },
+      {
+        "title": "Manicure & Pedicure",
+        "message": "Manicure, Pedicure"
       },
       {
         "title": "Estilo",
@@ -106,23 +110,27 @@
     "subcategories": [
       {
         "title": "Confeitaria",
-        "message": "Confeitaria, Chocolateiro"
+        "message": "Salgadinhos, Bolos de aniversário e casamento, confeitaria, Doçes e salgados"
       },
       {
         "title": "Churrasqueiro",
-        "message": "Churrasqueiro"
+        "message": "Franguité, Cabrité, Boi no espeto, Rodizio, Churrasqueiro"
       },
       {
         "title": "Música e Animação",
-        "message": "Animação de festas, Bandas e cantores, Djs, Ônibus balada"
+        "message": "Animação de festas, Bandas e cantores, Djs, Animadores"
       },
       {
         "title": "Fotografia e Vídeo",
-        "message": "Fotografia, Gravação de Vídeos"
+        "message": "Fotógrafo, Gravação de Vídeos, 360 graus"
       },
       {
         "title": "Serviços Complementares",
-        "message": "Brindes e lembrancinhas, Decoração, Florista"
+        "message": "Decoradora, Brindes e lembrancinhas, Florista, Decoração"
+      },
+      {
+        "title": "Acessoria de Eventos",
+        "message": "Organozador de eventos, wedding planner, Acessoria, Casamento"
       }
     ]
   }

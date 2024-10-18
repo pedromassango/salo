@@ -6,7 +6,7 @@ admin.initializeApp();
 const firestore = admin.firestore();
 //const messaging = admin.messaging();
 const auth = admin.auth();
-exports.completeAccountCreation = functions.https.onCall(async (data, context) => {
+exports.proCompleteAccountCreation = functions.https.onCall(async (data, context) => {
     // Check if the user is authenticated
     if (!context.auth) {
         throw new functions.https.HttpsError('unauthenticated', 'The user must be authenticated to perform this operation.');

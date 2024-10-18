@@ -34,11 +34,15 @@ class Category {
     this.subcategories = const [],
   });
 
+  String getTitle(List<Category> others) {
+    return '$title > ${others.map((i) => i.title).join(', ')}';
+  }
+
   factory Category.fromJson(Map<String, dynamic> json) {
     String uniqueId = uuid.v4();
 
     return Category(
-      id: uniqueId,
+      id: json['id'] ?? uniqueId,
       title: json['title'],
       image: json['image'],
       message: json['message'],

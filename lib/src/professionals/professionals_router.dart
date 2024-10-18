@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:go_router/go_router.dart';
 import 'package:salo/src/auth/domain/firebase_auth_extension.dart';
+import 'package:salo/src/professionals/profile/profile_screen.dart';
 
 import '../auth/auth_screen.dart';
 import '../auth/signup_form/signup_form_screen.dart';
@@ -34,6 +35,14 @@ final GoRouter professionalsRouter = GoRouter(
           builder: (BuildContext context, GoRouterState state) {
             return const HomeScreen();
           },
+          routes: [
+            GoRoute(
+              path: 'profile',
+              builder: (BuildContext context, GoRouterState state) {
+                return ProfileScreen();
+              },
+            ),
+          ],
         ),
         GoRoute(
           path: 'onboarding',

@@ -49,16 +49,22 @@ class SignupFormScreenCubit extends Cubit<SignupFormScreenCubitState> {
       emit(state.copyWith(selectedMainCategory: category));
 
   void onSubcategoriesChanged(Category category) {
+    const maxOfCategoriesPerProfessional = 3;
+
     final selection = List.of(state.selectedSubCategories);
     if (state.isSubcategorySelected(category)) {
       selection.removeWhere((item) => item.title == category.title);
-    } else {
+      emit(state.copyWith(
+        isCreatingAccount: false,
+        selectedSubCategories: selection,
+      ));
+    } else if (selection.length <= maxOfCategoriesPerProfessional) {
       selection.add(category);
+      emit(state.copyWith(
+        isCreatingAccount: false,
+        selectedSubCategories: selection,
+      ));
     }
-    emit(state.copyWith(
-      isCreatingAccount: false,
-      selectedSubCategories: selection,
-    ));
   }
 
   void onCreateAccount() {

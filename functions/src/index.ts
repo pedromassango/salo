@@ -7,7 +7,7 @@ const firestore = admin.firestore();
 const auth = admin.auth();
 
 
-exports.completeAccountCreation = functions.https.onCall(async (data, context) => {
+exports.proCompleteAccountCreation = functions.https.onCall(async (data, context) => {
     // Check if the user is authenticated
     if (!context.auth) {
         throw new functions.https.HttpsError(
@@ -19,7 +19,7 @@ exports.completeAccountCreation = functions.https.onCall(async (data, context) =
     try {
         const uid = data.uid;
         const appFlavor = data.appFlavor;
-        
+
         if (appFlavor != 'pro' && appFlavor != 'salo') {
             throw new functions.https.HttpsError('failed-precondition','Invalid claim');
         }

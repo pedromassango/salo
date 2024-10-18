@@ -34,7 +34,7 @@ class SignupUsecase {
       };
       debugPrint('Success: $payload}');
       final result = await FirebaseFunctions.instance
-          .httpsCallable('completeAccountCreation')
+          .httpsCallable('proCompleteAccountCreation')
           .call(payload);
       debugPrint('Success-server: ${result.data}');
       return true;

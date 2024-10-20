@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:salo/src/shared/gender.dart';
+import 'package:salo/src/shared/entities/gender.dart';
 
 const appName = 'Beto';
 const primaryColor = Color(0xff0A361D);
-const accentColor = Color(0xffD4ED31);
+const accentColor = Color(0xffcdf449);
 const accentColorAlternative = Colors.blue;
 final buttonBackgroundColor = primaryColor.withOpacity(.12);
 final dividerColor = buttonBackgroundColor;

@@ -7,6 +7,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:salo/src/get_categories_usecase.dart';
+import 'package:salo/src/shared/entities/category.dart';
 
 part 'category_selector_dialog_cubit.freezed.dart';
 

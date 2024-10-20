@@ -2,7 +2,8 @@ import 'package:collection/collection.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:salo/src/get_categories_usecase.dart';
-import 'package:salo/src/shared/gender.dart';
+import 'package:salo/src/shared/entities/category.dart';
+import 'package:salo/src/shared/entities/gender.dart';
 
 import '../domain/signup_usecase.dart';
 

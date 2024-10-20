@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:salo/src/shared/gender.dart';
+import 'package:salo/src/shared/entities/gender.dart';
 
 part 'professional_user.freezed.dart';
 part 'professional_user.g.dart';

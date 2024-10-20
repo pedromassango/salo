@@ -1,74 +1,46 @@
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:uuid/uuid.dart';
+import 'package:collection/collection.dart';
+import 'package:flutter/services.dart';
+import 'package:salo/src/shared/entities/category.dart';
 
 class GetCategoriesUsecase {
   Future<List<Category>> call() async {
-    //final jsonString = await rootBundle.loadString('assets/categories.json');
-    //List<Category> categories = parseCategoriesJson(jsonString);
-
     return FirebaseFirestore.instance
         .collection('categories')
         .get()
         .then((result) {
-      return result.docs.map((shot) => Category.fromJson(shot.data())).toList();
+      return result.docs.map((shot) => Category.fromJson(shot.data())).sorted(
+            (a, b) => a.priority.compareTo(b.priority),
+          );
     });
   }
 }
 
-const uuid = Uuid();
+class UploadCategoriesUsecase {
+  Future<void> call() async {
+    final jsonString = await rootBundle.loadString('assets/categories.json');
+    final categories = parseCategoriesJson(jsonString);
 
-class Category {
-  final String id;
-  final String title;
-  final String? image;
-  final String? message;
-  final List<Category> subcategories;
+    final firestore = FirebaseFirestore.instance;
+    final collection = firestore.collection('categories');
 
-  Category({
-    required this.id,
-    required this.title,
-    this.image,
-    this.message,
-    this.subcategories = const [],
-  });
+    // Get all the documents in the collection
+    final querySnapshot = await collection.get();
 
-  String getTitle(List<Category> others) {
-    return '$title > ${others.map((i) => i.title).join(', ')}';
-  }
+    // Loop through each document and delete it
+    for (final doc in querySnapshot.docs) {
+      await doc.reference.delete();
+    }
 
-  factory Category.fromJson(Map<String, dynamic> json) {
-    String uniqueId = uuid.v4();
-
-    return Category(
-      id: json['id'] ?? uniqueId,
-      title: json['title'],
-      image: json['image'],
-      message: json['message'],
-      subcategories: (json['subcategories'] as List<dynamic>?)
-              ?.map((e) => Category.fromJson(e))
-              .toList() ??
-          [],
-    );
-  }
-
-  // Converts a Category object to a Map for Firestore
-  Map<String, dynamic> toMap() {
-    return {
-      'id': id,
-      'title': title,
-      'image': image,
-      'message': message,
-      'subcategories':
-          subcategories.map((subcategory) => subcategory.toMap()).toList(),
-    };
+    for (final categoryJson in categories) {
+      collection.doc().set(categoryJson);
+    }
   }
 }
 
-List<Category> parseCategoriesJson(String jsonString) {
+List<Map<String, dynamic>> parseCategoriesJson(String jsonString) {
   final List<dynamic> jsonList = json.decode(jsonString);
-  return jsonList
-      .map((categoryJson) => Category.fromJson(categoryJson))
-      .toList();
+  return jsonList.map((json) => json as Map<String, dynamic>).toList();
 }

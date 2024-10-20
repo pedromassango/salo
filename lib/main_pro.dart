@@ -35,9 +35,7 @@ void main() async {
             saveFcmTokenInteractor: SaveFcmTokenInteractor(),
           ),
         ),
-        BlocProvider(
-          create: (_) => ProfileScreenCubit(),
-        ),
+        BlocProvider(create: (_) => ProfileScreenCubit()),
       ],
       child: SaloApp(
         title: '$appName Pro',

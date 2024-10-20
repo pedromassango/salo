@@ -2,9 +2,9 @@ import 'package:cloud_functions/cloud_functions.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart' hide Category;
 import 'package:flutter/services.dart';
+import 'package:salo/src/shared/entities/category.dart';
 
-import '../../get_categories_usecase.dart';
-import '../../shared/gender.dart';
+import '../../shared/entities/gender.dart';
 
 class SignupUsecase {
   Future<bool> call({

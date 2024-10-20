@@ -10,7 +10,7 @@ import 'home/home_screen.dart';
 import 'onboarding/onboarding_screen.dart';
 
 /// The route configuration.
-final GoRouter professionalsRouter = GoRouter(
+final professionalsRouter = GoRouter(
   routes: <RouteBase>[
     GoRoute(
       path: '/',

@@ -48,6 +48,8 @@ abstract class $CategorySelectorDialogCubitStateCopyWith<$Res> {
       Category? selectedMainCategory,
       List<Category> categories,
       List<Category> selectedSubCategories});
+
+  $CategoryCopyWith<$Res>? get selectedMainCategory;
 }
 
 /// @nodoc
@@ -105,6 +107,20 @@ class _$CategorySelectorDialogCubitStateCopyWithImpl<$Res,
               as List<Category>,
     ) as $Val);
   }
+
+  /// Create a copy of CategorySelectorDialogCubitState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $CategoryCopyWith<$Res>? get selectedMainCategory {
+    if (_value.selectedMainCategory == null) {
+      return null;
+    }
+
+    return $CategoryCopyWith<$Res>(_value.selectedMainCategory!, (value) {
+      return _then(_value.copyWith(selectedMainCategory: value) as $Val);
+    });
+  }
 }
 
 /// @nodoc
@@ -124,6 +140,9 @@ abstract class _$$CategorySelectorDialogCubitStateImplCopyWith<$Res>
       Category? selectedMainCategory,
       List<Category> categories,
       List<Category> selectedSubCategories});
+
+  @override
+  $CategoryCopyWith<$Res>? get selectedMainCategory;
 }
 
 /// @nodoc

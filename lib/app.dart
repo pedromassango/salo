@@ -26,6 +26,7 @@ class SaloApp extends StatelessWidget {
         useMaterial3: true,
         fontFamily: GoogleFonts.roboto().fontFamily,
         scaffoldBackgroundColor: Colors.white,
+        splashFactory: NoSplash.splashFactory, // Disable ripple effect
         textTheme: TextTheme(
           displayLarge: GoogleFonts.baloo2(
             fontWeight: FontWeight.w900,

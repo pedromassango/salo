@@ -103,7 +103,7 @@ class _HomeScreenState extends State<HomeScreen> {
             indicatorSize: TabBarIndicatorSize.label,
             dividerColor: Colors.black12,
             splashFactory: NoSplash.splashFactory,
-            indicatorColor: primaryColor,
+            indicatorColor: accentColor,
             labelStyle: tabBarTextStyle.copyWith(fontWeight: FontWeight.w600),
             unselectedLabelStyle: tabBarTextStyle,
             tabs: [

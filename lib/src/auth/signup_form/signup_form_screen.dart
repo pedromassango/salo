@@ -5,7 +5,7 @@ import 'package:salo/src/auth/domain/signup_usecase.dart';
 import 'package:salo/src/auth/signup_form/signup_form_screen_cubit.dart';
 import 'package:salo/src/get_categories_usecase.dart';
 import 'package:salo/src/shared/app_picker.dart';
-import 'package:salo/src/shared/gender.dart';
+import 'package:salo/src/shared/entities/gender.dart';
 
 import '../../shared/resources.dart';
 

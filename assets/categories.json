@@ -1,136 +1,241 @@
 [
   {
-    "title": "Moda e Beleza",
-    "image": "https://cdn-icons-png.flaticon.com/512/4431/4431056.png",
+    "title": "Beleza & Estética",
+    "priority": 0,
+    "imageUrl": "https://cdn-icons-png.flaticon.com/512/4431/4431056.png",
     "message": "Maquiadoras, Manicure e pedicure, Design de sobrancelhas, Cabeleireiros, Barbeiros, Designer de pestanas, Micropigmentador, Podólogo, Bronzeamento, Depilação",
     "subcategories": [
       {
-        "title": "Cabelo",
-        "message": "Cabeleireiros e barbeiros, vendedora de perucas e cabelos brasileiros"
+        "title": "Barbeiros & Cabeleireiras",
+        "priority": 0,
+        "imageUrl": "https://img.freepik.com/free-photo/woman-getting-her-hair-done-salon_23-2148976118.jpg?w=900",
+        "message": "Cabeleireiras e barbeiros, vendedora de perucas e cabelos brasileiros"
       },
       {
-        "title": "Beleza",
-        "message": "Maquiadoras, Design de sobrancelhas, Esteticista, Manicure e pedicure, Designer de cílios, Micropigmentador, Podólogo, Bronzeamento, Depilação"
+        "title": "Maquiadoras",
+        "priority": 0,
+        "imageUrl": "https://img.freepik.com/free-photo/side-view-woman-using-pink-makeup-product_23-2149479344.jpg?w=826",
+        "message": "Design de sobrancelhas, Esteticista, Manicure e pedicure, Designer de cílios, Micropigmentador, Podólogo, Bronzeamento, Depilação, Maquiadoras"
       },
       {
         "title": "Manicure & Pedicure",
+        "priority": 0,
+        "imageUrl": "https://img.freepik.com/free-photo/close-up-bag-with-girls-hands-with-manicure-it_132075-12280.jpg?w=900",
         "message": "Manicure, Pedicure"
       },
       {
-        "title": "Estilo",
+        "title": "Vendedora de perucas",
+        "priority": 2,
+        "imageUrl": "https://cdn-icons-png.flaticon.com/512/4431/4431056.png",
+        "message": "https://img.freepik.com/free-photo/woman-training-outdoors_23-2150975491.jpg?w=826"
+      },
+      {
+        "title": "Alfaiate",
+        "priority": 3,
+        "imageUrl": "https://img.freepik.com/free-photo/close-up-woman-holding-needle-thread_23-2148789659.jpg?w=900",
         "message": "Corte e costura, Sapateiro, Alfaiate, Personal stylist"
       }
     ]
   },
   {
-    "title": "Reparos",
-    "image": "https://cdn-icons-png.flaticon.com/512/4431/4431056.png",
+    "title": "Montagem & Reparos",
+    "priority": 1,
+    "imageUrl": "https://cdn-icons-png.flaticon.com/512/4431/4431056.png",
     "message": "Eletricista, Montador de móveis, Pintor, Canalizador, Climatização, Arquiteto, Portão automático, etc.",
     "subcategories": [
       {
-        "title": "Instalações",
-        "message": "AC e Climatização, Instalador TV digital, Instalação de eletrônicos, Segurança eletrônica, Escada corrimão e guarda corpo, Portão automático, Câmeras e segurança, Sonorização de ambientes,  Sombras e coberturas"
+        "title": "AC e Climatização",
+        "priority": 1,
+        "imageUrl": "https://img.freepik.com/free-photo/capable-electrician-precise-serviceman-opening-up-old-malfunctioning-condenser-replace-it-with-new-performant-outdoor-hvac-system-after-draining-freon-tank-replacing-compressor_482257-70258.jpg?w=900",
+        "message": "Reparação de Geleira e Arcas, AC e Climatização"
       },
       {
-        "title": "Reformas e Reparos",
-        "message": "Eletricista, Pintor, Serralheria e solda, Vidraceiro, Gás, Pavimentação, Galvanização, Isolamento térmico e acústico, Restauração e polimento de pisos"
+        "title": "Eletricista",
+        "priority": 0,
+        "imageUrl": "https://empregosdiarioinfo.com/wp-content/uploads/2022/06/vagas-para-auxiliar-de-eletricista-370x247.jpg",
+        "message": "Reparação de quadros, instalação, e mais."
       },
       {
-        "title": "Serviços Gerais",
-        "message": "Chaveiro, Desentupidor, Desinfecção, Impermeabilizador, Marceneiro, Marido de aluguel, Tapeceiro, Reciclagem, Afiação"
+        "title": "Canalizador",
+        "priority": 0,
+        "imageUrl": "https://domunidade.com/wp-content/uploads/2021/09/Montagem-da-tubagem1-600x375.png",
+        "message": "Reparação e instalação de canalização de água"
       },
       {
-        "title": "Para Casa",
-        "message": "Decorador, Jardinagem, Limpeza de Vidros, Montador de móveis, Paisagista, Piscina, Coifas e exaustores, Instalação de papel de parede, Banheira, Lareira, Sauna"
+        "title": "Serralheria & Soldadura",
+        "imageUrl": "https://scontent-fra3-1.xx.fbcdn.net/v/t39.30808-6/332147905_178273111622403_8374290430911735844_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=TPpFGeGRSwUQ7kNvgF2wm6l&_nc_zt=23&_nc_ht=scontent-fra3-1.xx&_nc_gid=AZ4a18YRuG2jru7KTft6ao7&oh=00_AYCEpvIh3FhD4yMSRJ6PlrNEgHDSa0J9mIwr7MW1ZQE4mA&oe=671AFC14",
+        "message": "Eletricista, Pintor, Serralheria e solda"
       },
       {
-        "title": "Construção",
-        "message": "Arquiteto, Engenheiro, Limpeza Pós Obra, Pedreiro, Terraplanagem, Topografia, Marmoraria e granito, Poço artesiano, Empreiteiro, Casas e chalés de madeira, Concretagem, Design de interiores, Escavação, Fossa, Lazer e recreação, Remoção de entulho, Agrimensura"
+        "title": "Marceneiro",
+        "imageUrl": "https://img.freepik.com/free-photo/medium-shot-man-working-with-hand-saw_23-2148931063.jpg?w=826",
+        "message": "Fabricação de camas, cadeiras, mesas"
+      },
+      {
+        "title": "Portão automático",
+        "imageUrl": "https://scontent-fra3-1.xx.fbcdn.net/v/t39.30808-6/332147905_178273111622403_8374290430911735844_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=833d8c&_nc_ohc=TPpFGeGRSwUQ7kNvgF2wm6l&_nc_zt=23&_nc_ht=scontent-fra3-1.xx&_nc_gid=AZ4a18YRuG2jru7KTft6ao7&oh=00_AYCEpvIh3FhD4yMSRJ6PlrNEgHDSa0J9mIwr7MW1ZQE4mA&oe=671AFC14",
+        "message": "Portão automático, portões"
       }
     ]
   },
   {
     "title": "Serviços Domésticos",
-    "image": "https://cdn-icons-png.flaticon.com/512/4431/4431056.png",
+    "priority": 0,
+    "imageUrl": "https://cdn-icons-png.flaticon.com/512/4431/4431056.png",
     "message": "Diarista, Babá, Motorista, Cozinheira, Passadeira, Lavadeira, Governanta, Pets, Personal organizer, etc.",
     "subcategories": [
       {
         "title": "Babá",
+        "priority": 0,
+        "imageUrl": "https://img.freepik.com/free-photo/woman-spending-time-with-her-black-baby-boy_23-2149220013.jpg?w=900",
         "message": "Babá"
       },
       {
-        "title": "Serviços Domésticos",
+        "title": "Empregada",
+        "priority": 0,
+        "imageUrl": "https://img.freepik.com/free-photo/high-angle-woman-working-service-industry_23-2150722807.jpg?w=826",
         "message": "Cozinheira, Passadeira, Lavadeira, Governanta"
       },
       {
-        "title": "Transporte",
-        "message": "Motorista, Entregador"
+        "title": "Cozinheira",
+        "priority": 0,
+        "imageUrl": "https://img.freepik.com/free-photo/medium-shot-smiley-woman-wearing-rompers_23-2149157642.jpg?w=826",
+        "message": "Cozinheira"
       },
       {
-        "title": "Pets",
-        "message": "Adestrador de cães, Passeador de cães, Serviços para pets"
+        "title": "Lavadeira",
+        "priority": 0,
+        "imageUrl": "https://img.freepik.com/free-photo/close-up-hands-washing-laundry_23-2148789715.jpg?w=900",
+        "message": "Lavadeira"
+      },
+      {
+        "title": "Adestrador de cães",
+        "imageUrl": "https://img.freepik.com/free-photo/front-view-woman-with-greyhound-dog-outdoors_23-2149901496.jpg?w=826",
+        "message": "Adestrador e Serviços para pets"
       },
       {
         "title": "Limpeza de Piscina",
-        "message": "ALimpeza de Piscina"
+        "imageUrl": "https://img.freepik.com/free-photo/high-angle-man-cleaning-railing_23-2149345524.jpg?w=826",
+        "message": "Limpeza de Piscina"
       },
       {
-        "title": "Cortinas e Tapetes",
-        "message": "Lavagem de Cortinas, Persianas e Tapetes, Limpeza de Carpetes"
-      }
-    ]
-  },
-  {
-    "title": "Aulas",
-    "image": "https://cdn-icons-png.flaticon.com/512/4431/4431056.png",
-    "message": "Idiomas, Matemática, Inglês, Dança, Personal trainer, Esportes, etc.",
-    "subcategories": [
-      {
-        "title": "Idiomas",
-        "message": "Inglês, Português, Espanhol, etc."
-      },
-      {
-        "title": "Acadêmicos",
-        "message": "Concursos, Escolares e Reforço, Educação Especial, Ensino Superior, Tarefas, Preparatório"
-      },
-      {
-        "title": "Esportes",
-        "message": "Dança, Esportes, Luta, Judo, Jogos"
-      },
-      {
-        "title": "Tecnologia",
-        "message": "Desenvolvimento Web, Android Apps, iOS, Esportes Eletrônicos, Informática, Marketing Digital"
+        "title": "Limpeza de Tapetes",
+        "priority": 1,
+        "imageUrl": "https://img.freepik.com/free-photo/people-housework-housekeeping-concept-close-up-woman-with-legs-vacuum-cleaner-cleaning-carpet-home_231208-13612.jpg?w=900",
+        "message": "Limpeza de Tapetes"
       }
     ]
   },
   {
     "title": "Eventos",
-    "image": "https://cdn-icons-png.flaticon.com/512/4431/4431056.png",
+    "priority": 1,
+    "imageUrl": "https://cdn-icons-png.flaticon.com/512/4431/4431056.png",
     "message": "Fotografia, Decoração, Gravação de Vídeos, Confeitaria, Churrasqueiro, Música e Animação",
     "subcategories": [
       {
         "title": "Confeitaria",
+
+        "imageUrl": "https://img.freepik.com/free-photo/front-view-smiley-woman-holding-cookies_23-2149871139.jpg?w=826",
         "message": "Salgadinhos, Bolos de aniversário e casamento, confeitaria, Doçes e salgados"
       },
       {
         "title": "Churrasqueiro",
+        "imageUrl": "https://img.freepik.com/free-photo/hand-with-cooked-meat_23-2148599802.jpg?w=826",
         "message": "Franguité, Cabrité, Boi no espeto, Rodizio, Churrasqueiro"
       },
       {
-        "title": "Música e Animação",
-        "message": "Animação de festas, Bandas e cantores, Djs, Animadores"
+        "title": "Djs",
+        "priority": 1,
+        "imageUrl": "https://img.freepik.com/free-photo/high-angle-dj-devices-arrangement_23-2149739829.jpg?w=900",
+        "message": "Animação de festas, cantores, Djs, Animadores"
       },
       {
-        "title": "Fotografia e Vídeo",
-        "message": "Fotógrafo, Gravação de Vídeos, 360 graus"
-      },
-      {
-        "title": "Serviços Complementares",
+        "title": "Decoradora",
+        "priority": 0,
+        "imageUrl": "https://scontent-fra5-1.xx.fbcdn.net/v/t45.5328-4/454865595_1058307295628801_8413320968227958656_n.jpg?stp=dst-jpg_s960x960&_nc_cat=102&ccb=1-7&_nc_sid=247b10&_nc_ohc=4mBK0LP6NXgQ7kNvgFxzyA1&_nc_zt=23&_nc_ht=scontent-fra5-1.xx&_nc_gid=AX2UKFW5uQzKTGzTh6n2Akt&oh=00_AYAyeirziZIXElsOUS18OU_CDGux247jU7Kapt_HFtEAQg&oe=671B1FE4",
         "message": "Decoradora, Brindes e lembrancinhas, Florista, Decoração"
       },
       {
-        "title": "Acessoria de Eventos",
+        "title": "Animadores de festas",
+        "imageUrl": "https://img.freepik.com/free-photo/man-wearing-party-hat-drinking-champagne_23-2148757441.jpg?w=996",
+        "message": "Animação de festas, cantores"
+      },
+      {
+        "title": "Fotógrafo",
+        "priority": 1,
+        "imageUrl": "https://img.freepik.com/free-photo/photo-camera-still-life_23-2150630666.jpg?w=740",
+        "message": "Fotógrafo, Gravação de Vídeos, 360 graus"
+      },
+      {
+        "title": "Organozador de eventos",
+        "imageUrl": "https://scontent-fra5-1.xx.fbcdn.net/v/t45.5328-4/454865595_1058307295628801_8413320968227958656_n.jpg?stp=dst-jpg_s960x960&_nc_cat=102&ccb=1-7&_nc_sid=247b10&_nc_ohc=4mBK0LP6NXgQ7kNvgFxzyA1&_nc_zt=23&_nc_ht=scontent-fra5-1.xx&_nc_gid=AX2UKFW5uQzKTGzTh6n2Akt&oh=00_AYAyeirziZIXElsOUS18OU_CDGux247jU7Kapt_HFtEAQg&oe=671B1FE4",
         "message": "Organozador de eventos, wedding planner, Acessoria, Casamento"
+      }
+    ]
+  },
+  {
+    "title": "Aulas",
+    "priority": 3,
+    "imageUrl": "https://cdn-icons-png.flaticon.com/512/4431/4431056.png",
+    "message": "Idiomas, Matemática, Inglês, Dança, Personal trainer, Esportes, etc.",
+    "subcategories": [
+      {
+        "title": "Professor de Inglês",
+        "priority": 0,
+        "imageUrl": "https://img.freepik.com/free-photo/english-language-books-with-red-background_23-2149440459.jpg?w=826",
+        "message": "Inglês, Português, Espanhol"
+      },
+      {
+        "title": "Idiomas",
+        "priority": 0,
+        "imageUrl": "https://img.freepik.com/free-vector/multicultural-citizens-talking-different-languages_23-2148369875.jpg?w=900",
+        "message": "Inglês, Português, Espanhol, etc."
+      },
+      {
+        "title": "Professor",
+        "priority": 4,
+        "imageUrl": "https://img.freepik.com/free-photo/english-language-books-with-red-background_23-2149440459.jpg?w=826",
+        "message": "Concursos, Escolares e Reforço, Ensino Superior, Tarefas, Preparatório"
+      },
+      {
+        "title": "Esportes",
+        "imageUrl": "https://img.freepik.com/free-vector/flat-design-soccer-player-silhouette_23-2149476871.jpg?w=1380",
+        "message": "Dança, Esportes, Luta, Judo, Jogos"
+      },
+      {
+        "title": "Desenvolvimento Web",
+        "imageUrl": "https://img.freepik.com/free-photo/3d-rendering-website-hosting-concept_23-2149484780.jpg?w=1380",
+        "message": "Desenvolvimento Web, websites"
+      },
+      {
+        "title": "Desenvolvimento de apps",
+        "imageUrl": "https://img.freepik.com/free-vector/mobile-development-concept-message-roll-software-programming-mobile-phone_39422-1034.jpg?w=900",
+        "message": "Desenvolvedor de apps Android e iOS"
+      }
+    ]
+  },
+  {
+    "title": "Outros",
+    "priority": 1,
+    "imageUrl": "https://cdn-icons-png.flaticon.com/512/4431/4431056.png",
+    "message": "Intermediário, Motorista, Motoqueiro",
+    "subcategories": [
+      {
+        "title": "Intermediário de imóveis",
+        "imageUrl": "https://www.portaldeangola.com/wp-content/uploads/2016/05/09e1c70b2-aa76-4146-98b2-159e54bf48fa.jpg",
+        "message": "Intermediário de imóveis"
+      },
+      {
+        "title": "Motorista",
+        "priority": 1,
+        "imageUrl": "https://img.freepik.com/free-photo/many-sports-cars-parked-row-vertical-view_268835-908.jpg?w=826",
+        "message": "Motorista de taxi e privado"
+      },
+      {
+        "title": "Motoqueiro",
+        "priority": 0,
+        "imageUrl": "https://img.freepik.com/free-photo/macaque-monkey-motor-bike_181624-1341.jpg?w=900",
+        "message": "Motoqueiro"
       }
     ]
   }

@@ -92,6 +92,8 @@ class _HomePageState extends State<HomePage> {
                 }
 
                 return SingleChildScrollView(
+                  keyboardDismissBehavior:
+                      ScrollViewKeyboardDismissBehavior.onDrag,
                   child: Column(
                     children: [
                       ...state.categories.map((category) {
@@ -159,6 +161,7 @@ class _CategorySection extends StatelessWidget {
           height: cardSize,
           child: ListView.builder(
             itemCount: subcategories.length,
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             padding: const EdgeInsets.symmetric(
               horizontal: 16,
             ),

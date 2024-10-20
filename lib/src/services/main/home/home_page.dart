@@ -44,6 +44,9 @@ class _HomePageState extends State<HomePage> {
                 ),
                 const SizedBox(height: 16),
                 TextField(
+                  onTapOutside: (_) {
+                    FocusManager.instance.primaryFocus?.unfocus();
+                  },
                   decoration: InputDecoration(
                     fillColor: Colors.white,
                     filled: true,

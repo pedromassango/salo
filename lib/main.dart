@@ -21,24 +21,26 @@ void main() async {
 
   await FirebaseMessaging.instance.setAutoInitEnabled(true);
 
-  runApp(MultiBlocProvider(
-    providers: [
-      BlocProvider(
-        create: (_) => MainScreenCubit(
-          saveFcmTokenInteractor: SaveFcmTokenInteractor(),
-          getCategoriesUsecase: GetCategoriesUsecase(),
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (_) => MainScreenCubit(
+            saveFcmTokenInteractor: SaveFcmTokenInteractor(),
+            getCategoriesUsecase: GetCategoriesUsecase(),
+          ),
         ),
-      ),
-      BlocProvider(
-        create: (_) => HomePageCubit(
-          getCategoriesUsecase: GetCategoriesUsecase(),
+        BlocProvider(
+          create: (_) => HomePageCubit(
+            getCategoriesUsecase: GetCategoriesUsecase(),
+          ),
         ),
+        BlocProvider(create: (_) => RequestsPageCubit()),
+        BlocProvider(create: (_) => ProfilePageCubit()),
+      ],
+      child: SaloApp(
+        router: servicesRouter,
       ),
-      BlocProvider(create: (_) => RequestsPageCubit()),
-      BlocProvider(create: (_) => ProfilePageCubit()),
-    ],
-    child: SaloApp(
-      router: servicesRouter,
     ),
-  ));
+  );
 }

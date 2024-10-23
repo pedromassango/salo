@@ -7,6 +7,12 @@ import 'firebase_collections.dart';
 
 class SaveFcmTokenInteractor {
   Future<void> call({String? token}) async {
+    final currentUser = FirebaseAuth.instance.currentUser;
+    if (currentUser == null) {
+      debugPrint('Token not saved. No auth!');
+      return;
+    }
+
     try {
       var effectiveToken = token;
 
@@ -16,7 +22,6 @@ class SaveFcmTokenInteractor {
       }
 
       if (effectiveToken != null && effectiveToken.trim().isNotEmpty) {
-        final currentUser = FirebaseAuth.instance.currentUser!;
         final userId = currentUser.uid;
         final userDoc = getProUserDoc(userId);
 
